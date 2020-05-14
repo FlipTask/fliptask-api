@@ -1,0 +1,37 @@
+.modal--wrapper{
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+    background-color: rgba(0, 0, 0, 0.25);
+    display: flex;
+    z-index:1;
+    .modal{
+        width: 70%;
+        margin: auto;
+        margin-top: 4em;
+        background-color: #fff;
+        padding: 1em;
+        box-shadow: 0px 0px 7px 2px rgba(51, 51, 51, 0.52);
+        @include borderRadius;
+        .modal--header{
+            p{
+                font-size: 1.5em;
+                font-weight: 700;
+                margin-top: 0;
+            }
+        }
+        .modal--body{
+            margin-bottom: 2em;
+        }
+        .modal--footer{
+            float: right;
+            button{
+                &:last-child{
+                    margin-left: 1em;
+                }
+            }
+        }
+    }
+}

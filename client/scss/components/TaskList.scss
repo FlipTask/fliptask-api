@@ -1,0 +1,86 @@
+.task-list--wrapper {
+    display: inline-block;
+    width: 300px;
+    vertical-align: top;
+    min-width: 300px;
+    margin: 0 1em;
+    max-height: 80vh;
+    // transition: 0.1s ease all;
+    height: 100%;
+    &:first-child{
+        // margin-left: 0;
+    }
+    .task-list {
+        display: flex;
+        flex-direction: column;
+        max-height: inherit;
+        @include borderRadius;
+        border-color: #fff;
+        background-color: transparent;
+        background-color: #f7f9fc;
+        .task-list--header {
+            font-size: 1em;
+            font-weight: 700;
+            color: $light-color;
+            margin-bottom: 1em;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.5em 0;
+            position: relative;
+            p{
+                margin: 0;
+                padding-left: 1em;
+                padding-right: 3em;
+            }
+            .task-list--options-btn{
+                padding: 0.4em 1em;
+                position: absolute;
+                right: 0;
+                top: 0.2em;
+                &:hover,&:focus,&.active{
+                    background-color: #e5eef5;
+                    @include borderRadius;
+                    box-shadow: inset 0px 0px 3px #ddd;
+                }
+            }
+        }
+        .task-list--body {
+            scroll-behavior: smooth;
+            display: block;
+            height: inherit;
+            width: 100%;
+            background-color: #e5eef5;
+            @include borderRadius;
+            float: left;
+            flex: 1 1 auto;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+        .task-list--footer {
+            float: left;
+            margin-top: 1em;
+            // padding: 0em 0.5em;
+            button{
+                width: 100%;
+            }
+        }
+    }
+}
+
+
+.card-shadow{
+    box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.1);
+}
+
+.active-list-item{
+    cursor: all-scroll;
+}
+#new-task-list-placeholder{
+    margin-top: 3.4em;
+}
+.create-new-list-form{
+    .form-group{
+        margin-bottom: 1em;
+    }
+}

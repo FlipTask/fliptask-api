@@ -1,0 +1,69 @@
+button{
+    &.btn{
+        font-size: .875rem;
+        position: relative;
+        transition: all .15s ease;
+        letter-spacing: .025em;
+        text-transform: none;
+        will-change: transform;
+        font-weight: 400;
+        line-height: 1.5;
+        display: inline-block;
+        padding: .625rem 1.25rem;
+        user-select: none;
+        text-align: center;
+        vertical-align: middle;
+        white-space: nowrap;
+        border: 0;
+        border-color: #fff;
+        background-color: #fff;
+        color: $light-color;
+        &.shadowed{
+            box-shadow: 0 4px 6px rgba(50, 50, 93, .11), 0 1px 3px rgba(0, 0, 0, .08);
+            &:hover{
+                box-shadow: 0px 4px 6px rgba(50, 50, 93, 0.11), -1px 6px 9px 5px rgba(0, 0, 0, 0.08) !important;
+            }
+        }
+        &.rounded{
+            @include borderRadius;
+        }
+    
+        i{
+            margin-right: 5px;
+        }
+        &.sm{
+            font-size: 12px;
+            padding: 4px 8px;
+        }
+        &:focus-within,&:active,&:focus{
+            outline: none;
+        }
+        &:hover{
+            cursor: pointer;
+        }
+        
+        &.btn-theme{
+            background-color: $theme-color;
+            color: #fff;
+        }
+        &.btn-neutral{
+            color: $theme-neutral-color;
+        }
+        &.btn-neutral-inverse{
+            background-color: $theme-neutral-color;
+            color: #fff;
+        }
+    }
+
+}
+
+
+
+.btn-default{
+    font-size: .875rem;
+    position: relative;
+    transition: all .15s ease;
+    letter-spacing: .025em;
+    text-transform: none;
+    will-change: transform;
+}

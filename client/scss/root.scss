@@ -1,0 +1,25 @@
+// @import "./reset.scss";
+@import "./vars/color-themes.scss";
+@import "./normalize.scss";
+@import "./vars/mixins.scss";
+@import "./vars//global.scss";
+
+@import "./Animations.scss";
+
+@import "./components/Loader.scss";
+@import "./components/Input.scss";
+@import "./components/Modal.scss";
+@import "./components/Button.scss";
+@import "./components/TaskList.scss";
+@import "./components/SideNav.scss";
+@import "./components/Badge.scss";
+@import "./components/TaskCard.scss";
+@import "./components/DropDown.scss";
+@import "./components/Header.scss";
+@import "./components/Comment.scss";
+@import "./components/Drawer.scss";
+@import "./components/ImageUpload.scss";
+
+@import "./containers/Home.scss";
+@import "./containers/Login.scss";
+@import "~react-customize-token-input/dist/react-customize-token-input.css";

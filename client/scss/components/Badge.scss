@@ -1,0 +1,34 @@
+.badge{
+    font-size: 0.8em;
+    font-family: $secondary-font;
+    font-weight: 600;
+    @include borderRadius;
+    padding: 0.1em 0.6em;
+    margin: 0 0.5em;
+    &:first-child{
+        margin-left: 0px;
+    }
+    &:last-child{
+        margin-right: 0px;
+    }
+    &.badge-danger{
+        background-color: rgba($theme-danger-color, 0.15);
+        color: $theme-danger-color;   
+    }
+    &.badge-primary{
+        background-color: rgba($theme-primary-color, 0.15);
+        color: $theme-primary-color;   
+    }
+    &.badge-success{
+        background-color: rgba($theme-success-color, 0.15);
+        color: $theme-success-color;   
+    }
+    &.badge-warning{
+        background-color: rgba($theme-warning-color, 0.15);
+        color: $theme-warning-color;
+    }
+    &.badge-neutral{
+        background-color: rgba($theme-neutral-color, 0.15);
+        color: $theme-danger-color;   
+    }
+}

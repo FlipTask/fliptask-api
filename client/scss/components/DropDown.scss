@@ -1,0 +1,87 @@
+.dropdown {
+    &:hover {
+        cursor: pointer;
+    }
+    .dropdown--wrapper {
+        position: relative;
+        .dropdown--input {
+            .form-group {
+                margin-bottom: 0;
+                .input-group{
+                    position: relative;
+                    input {
+                        padding-right: 3em;
+                        &:hover {
+                            cursor: pointer;
+                        }
+                        &:focus {
+                            cursor: auto;
+                            box-shadow: 0 2px 3px rgba(50, 50, 93, 0.11), 0 0 2px rgba(0, 0, 0, 0.08) !important;
+                        }
+                    }
+                    i {
+                        position: absolute;
+                        right: 1em;
+                        top: 39%;
+                    }
+                }
+            }
+        }
+        .dropdown--list {
+            box-shadow: 0 2px 4px rgba(50, 50, 93, 0.11), 0 1px 3px 0 rgba(0, 0, 0, 0.08) !important;
+            // position: relative;
+            // margin-top: 0.2em;
+            position: absolute;
+            width: 100%;
+            z-index: 2;
+            top: 104%;
+            .dropdown--list-container {
+                position: relative;
+                .dropdown--list_wrapper {
+                    // position: absolute;
+                    width: 100%;
+                    top: 0.2rem;
+                    // z-index: 10;
+                    left: 0;
+                    max-height: 13em;
+                    overflow-y: auto;
+                    margin-top: 0;
+                    // background-color: #fff;
+                    // border-radius: 8px;
+                }
+                .dropdown-list-item {
+                    color: $light-color;
+                    font-family: $secondary-font;
+                    font-weight: 400;
+                    font-size: 1em;
+                    padding: 0.5em 1em;
+                    border-bottom: 1px solid rgba(161, 162, 164, 0.09);
+                    transition: 0.3s ease all;
+                    display: block;
+                    width: 100%;
+                    border-left: 0;
+                    border-right: 0;
+                    text-align: left;
+                    border-top: 0;
+                    @include borderRadius;
+                    &.fixed-at-bottom{
+                        // position: absolute;
+                        width: 100%;
+                        // bottom: 0em;
+                        border-top: 1px solid rgba(161, 162, 164, 0.09);
+                    }
+                    &:last-child {
+                        border-bottom: 0;
+                    }
+                    &:hover {
+                        transition: 0.3s ease all;
+                        cursor: pointer;
+                        background-color: #f7f9fc;
+                        padding-left: 1.5em !important;
+                        color: $theme-primary-color;
+                    }
+                }
+            }
+        }
+    }
+}

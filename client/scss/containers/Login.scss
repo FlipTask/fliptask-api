@@ -1,0 +1,90 @@
+.page-wrapper{
+    height: 100vh;
+    flex: 1;
+}
+
+.page-side-wrapper{
+    // background-image: radial-gradient( circle farthest-corner at 0.5% 97.2%, rgba(62,134,211,1) 0%, rgba(147,196,255,1) 100.2% );
+    background-image: radial-gradient( circle farthest-corner at 13.8% 22.8%, rgba(237,141,116,1) 0%, rgba(241,144,208,1) 90% );
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    position: relative;
+    img{
+        display: inline-flex;
+        margin: 0 auto;
+        max-width: 30%;
+        margin-right: -8em;
+        position: absolute;
+        right: 0;
+    }
+    >h1, >h2, >h3, >h4, >h5, >h6 {
+        font-weight: 100;
+        margin-bottom: 0;
+        color: #fff;
+        margin-top: 0.5em;
+    }
+    >h1{
+        font-size: 7em;
+    }
+    >h2{
+        font-size: 2.45em;
+    }
+    >h3{
+        font-size: 2.4em;
+    }
+}
+.logo-img{
+    margin: 1em auto;
+    margin-bottom: 1em;
+    display: block;
+    max-width: 30%;
+    // filter: invert(2);
+}
+.login-form-wrapper{
+    flex: 1;
+    padding: 0 10em;
+    margin: auto;
+    .form-group{
+        margin-bottom: 1.5em;
+    }
+    .login-form{
+        margin: 0;
+        display: block;
+        box-sizing: border-box;
+        padding: 0 0.5em;
+        text-align: center;
+        .login-btn{
+            width: 100%;
+            background-color: $theme-color;
+            padding-left: 12px;
+            padding-right: 12px;
+            text-align: center;
+            color: #fff;
+            font-size: 1em;
+            min-height: 45px;
+            line-height: 1.6em;
+            font-weight: 600;
+            text-decoration: none;
+            border-width: initial;
+            border-style: none;
+            border-color: initial;
+            border-image: initial;
+            border-radius: 3px;
+            margin: 0.5em 0;
+        }
+    }
+}
+
+.auth-back-link{
+    display: inline-block;
+    margin: auto;
+    margin-top: 2em;
+    text-align: center;
+    text-decoration: none;
+    color: inherit;
+    &:hover,&:active{
+        color: $theme-neutral-color;
+        text-decoration: underline;
+    }
+}

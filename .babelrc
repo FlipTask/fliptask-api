@@ -1,0 +1,36 @@
+{
+    "presets": [
+        [
+            "@babel/preset-env", {
+                "modules": false,
+                "targets": [
+                    "last 3 versions", "not dead", "not < 1%"
+                ],
+                // "useBuiltIns": "usage"
+            }
+        ],
+        "@babel/preset-react"
+    ],
+    "plugins": [
+        "@loadable/babel-plugin",
+        "@babel/plugin-transform-runtime",
+        "@babel/syntax-dynamic-import",
+        [
+            "@babel/plugin-proposal-class-properties", {
+                "loose": true
+            }
+        ]
+    ],
+    "env": {
+        "prod": {
+            "plugins": [
+                [
+                    "transform-react-remove-prop-types", {
+                        "mode": "wrap",
+                        "ignoreFilenames": ["node_modules"]
+                    }
+                ]
+            ]
+        }
+    }
+}

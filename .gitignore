@@ -1,0 +1,9 @@
+/node_modules
+/dist
+/client-build
+/server-build
+/logs
+/upload/*.jpg
+/upload/*.png
+/upload/*.jpeg
+/env/dev.env

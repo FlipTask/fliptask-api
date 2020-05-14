@@ -1,0 +1,29 @@
+
+
+.page--container{
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+    justify-content: flex-start;
+    width: 100%;
+    height: 100vh;
+    // background-color: $theme-page-bg;
+    background-color: #f7f9fc;
+    
+    .board--wrapper {
+        flex-grow: 1;
+        display: flex;
+        width: calc(100% - 250px);
+        flex-direction: column;
+        .container-fluid {
+            flex-direction: inherit;
+            display: flex;
+            overflow-x: auto;
+            align-items: flex-start;
+            flex-grow: 1;
+            transition: 0.1s ease all;
+            margin: 1em;
+            flex-direction: row;
+        }
+    }
+}
