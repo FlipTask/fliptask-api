@@ -1,5 +1,5 @@
 
-# Taskify (Task Management)
+# Fliptask (Task Management)
 
 ### Prerequisite
 You have to install following dependencies to start:
@@ -11,8 +11,8 @@ You have to install following dependencies to start:
 
 Steps to follow
 
-1.  Clone Taskify
-2.  Change the current directory to `taskify`.
+1.  Clone Fliptask
+2.  Change the current directory to `fliptask`.
 ```
 cd tasify
 ```
