@@ -1,23 +1,23 @@
 module.exports = {
-    create: async(req,res,next) => {
-        try{
+    create: async (req, res) => {
+        try {
             const {
-                name,
+                name
             } = req.body;
-            const userMeta = await UserMeta.findOne({user: req.user._id});
+            const userMeta = await UserMeta.findOne({ user: req.user._id });
             const team = await Team.findOne({
-                name: name,
+                name,
                 organization: userMeta.organization
             });
-            if(team){
+            if (team) {
                 return res.status(400).send({
                     error: true,
                     message: `Team with name ${name} already exists`,
-                    data: null,
+                    data: null
                 });
             }
             const newTeam = await Team.create({
-                name: name,
+                name,
                 organization: userMeta.organization,
                 createdBy: req.user._id,
                 owners: [req.user._id],
@@ -28,8 +28,8 @@ module.exports = {
                 data: newTeam,
                 message: "New team created"
             });
-        }catch(e){
-            Logger.error(`[ERROR] Error in creating team`,e);
+        } catch (e) {
+            Logger.error("[ERROR] Error in creating team", e);
             return res.status(500).send({
                 error: true,
                 data: null,
@@ -37,4 +37,4 @@ module.exports = {
             });
         }
     }
-}
+};

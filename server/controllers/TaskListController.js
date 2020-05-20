@@ -1,17 +1,17 @@
 module.exports = {
-    create: async(req,res,next) => {
+    create: async (req, res) => {
         const {
             title,
             board
         } = req.body;
-        const createdBy = req.user._id
-        try{
+        const createdBy = req.user._id;
+        try {
             const taskList = await TaskList.findOne({
                 title,
                 board,
                 createdBy
             });
-            if(!taskList){
+            if (!taskList) {
                 const newTaskList = await TaskList.create({
                     title,
                     board,
@@ -22,14 +22,13 @@ module.exports = {
                     data: newTaskList,
                     message: "OK"
                 });
-            }else{
-                return res.status(409).send({
-                    error: false,
-                    data: newTaskList,
-                    message: "TaskList already exists !"
-                });
             }
-        }catch(e){
+            return res.status(409).send({
+                error: false,
+                data: newTaskList,
+                message: "TaskList already exists !"
+            });
+        } catch (e) {
             console.log(e);
             Logger.error(`[ERROR] Error in creating taskList \n ${e}`);
             return res.status(500).send({
@@ -39,29 +38,27 @@ module.exports = {
             });
         }
     },
-    get: async(req,res,next) => {
-        try{
+    get: async (req, res) => {
+        try {
             const {
                 taskListId,
                 boardId
             } = req.params;
-            const user = req.user;
-            const extras = req.query.extras;
+            const { user } = req;
+            const { extras } = req.query;
             let populate = [];
-            if(extras){
-                populate = extras.split(",").map((key) => {
-                    return {
-                        path: key
-                    }
-                });
+            if (extras) {
+                populate = extras.split(",").map((key) => ({
+                    path: key
+                }));
             }
-            let findObj = {
+            const findObj = {
                 createdBy: user._id,
                 board: boardId
-            }
+            };
             let funcName = "find";
-            if(taskListId){
-                findObj._id = taskListId
+            if (taskListId) {
+                findObj._id = taskListId;
                 funcName = "findOne";
             }
             const taskList = await TaskList[funcName](findObj).populate(populate);
@@ -70,7 +67,7 @@ module.exports = {
                 data: taskList,
                 message: "OK"
             });
-        }catch(e){
+        } catch (e) {
             Logger.error(`[ERROR] Error in getting taskList \n${e}`);
             console.log(e);
             return res.status(500).send({
@@ -80,21 +77,21 @@ module.exports = {
             });
         }
     },
-    update: async(req,res,next) => {
-        try{
+    update: async (req, res) => {
+        try {
             const {
                 board,
                 sequence,
                 title,
-                id, //tasklist id     
+                id // tasklist id
             } = req.body;
-            const taskList = await TaskList.findOne({_id: id,board});
-            if(taskList){
-                if(sequence){
-                    taskList.sequence = sequence;   
+            const taskList = await TaskList.findOne({ _id: id, board });
+            if (taskList) {
+                if (sequence) {
+                    taskList.sequence = sequence;
                 }
-                if(title){
-                    taskList.title = title;  
+                if (title) {
+                    taskList.title = title;
                 }
                 const updatedTaskList = await taskList.save();
                 return res.status(200).send({
@@ -102,14 +99,13 @@ module.exports = {
                     data: updatedTaskList,
                     message: "OK"
                 });
-            }else{
-                return res.status(400).send({
-                    error: false,
-                    data: newTaskList,
-                    message: "TaskList not found"
-                });
             }
-        }catch(e){
+            return res.status(400).send({
+                error: false,
+                data: newTaskList,
+                message: "TaskList not found"
+            });
+        } catch (e) {
             Logger.error(`[ERROR] Error in updating taskList \n${e}`);
             console.log(e);
             return res.status(500).send({
@@ -119,4 +115,4 @@ module.exports = {
             });
         }
     }
-}
+};

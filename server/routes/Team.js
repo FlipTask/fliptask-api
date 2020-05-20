@@ -4,4 +4,4 @@ module.exports = [
         type: "POST",
         handlers: ["Auth.authenticate", "TeamController.create"]
     }
-]
+];

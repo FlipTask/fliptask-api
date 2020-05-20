@@ -1,31 +1,30 @@
 module.exports = {
-    create: async(req,res,next) => {
+    create: async (req, res) => {
         const {
             description,
             title,
             priority,
-            due_date,
-            task_list,
-            desc_images,
+            due_date: dueDate,
+            task_list: taskList
         } = req.body;
         const createdBy = req.user._id;
-        try{
+        try {
             // console.log(req.file)
             const task = await Task.create({
                 title,
                 createdBy,
                 description,
                 priority,
-                due_date,
-                task_list
+                due_date: dueDate,
+                task_list: taskList
             });
             return res.status(200).send({
                 error: false,
                 data: task,
                 message: "OK"
             });
-        }catch(e){
-            Logger.error(`[ERROR] Error in creating task`,e);
+        } catch (e) {
+            Logger.error("[ERROR] Error in creating task", e);
             return res.status(500).send({
                 error: true,
                 data: null,
@@ -33,19 +32,17 @@ module.exports = {
             });
         }
     },
-    uploadTaskImages: async (req, res, next) => {
+    uploadTaskImages: async (req, res) => {
         try {
-            const {taskId} = req.query;
+            const { taskId } = req.query;
             const task = await Task.findById(taskId);
-            if(task){
+            if (task) {
                 await Multer(req, res);
                 // console.log("task.desc_images",req.files);
-                const images = req.files.map((o) => {
-                    return {
-                        image_name: o.filename
-                    }
-                });
-                
+                const images = req.files.map((o) => ({
+                    image_name: o.filename
+                }));
+
                 task.desc_images = task.desc_images.concat(images);
                 const newTask = await task.save();
                 return res.status(200).send({
@@ -68,17 +65,17 @@ module.exports = {
             });
         }
     },
-    update: async(req,res,next) => {
+    update: async (req, res) => {
         const {
             _id
         } = req.body;
-        try{
+        try {
             const task = await Task.findById(_id);
-            if(task._id){
-                const omits = ["_id","desc_images","comments","__v","updatedAt","createdAt"];
-                const keys = Object.keys(req.body).filter(k => omits.indexOf(k) < 0);
-                for(let i = 0 ; i < keys.length ; i++){
-                    task[keys[i]] = req.body[keys[i]]
+            if (task._id) {
+                const omits = ["_id", "desc_images", "comments", "__v", "updatedAt", "createdAt"];
+                const keys = Object.keys(req.body).filter((k) => omits.indexOf(k) < 0);
+                for (let i = 0; i < keys.length; i++) {
+                    task[keys[i]] = req.body[keys[i]];
                 }
                 const updatedTask = await task.save();
                 return res.status(200).send({
@@ -86,14 +83,13 @@ module.exports = {
                     data: updatedTask,
                     message: "OK"
                 });
-            }else{
-                return res.status(400).send({
-                    error: true,
-                    data: null,
-                    message: "Invalid task "
-                });
             }
-        }catch(e){
+            return res.status(400).send({
+                error: true,
+                data: null,
+                message: "Invalid task "
+            });
+        } catch (e) {
             Logger.error(`[ERROR] Error in updating task ${e}`);
             return res.status(500).send({
                 error: true,
@@ -102,4 +98,4 @@ module.exports = {
             });
         }
     }
-}
+};

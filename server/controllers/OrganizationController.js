@@ -1,13 +1,13 @@
 module.exports = {
-    create: async(req, res, next) => {
-        try{
+    create: async (req, res) => {
+        try {
             const {
                 name
             } = req.body;
-            const createdBy = req.user._id
-            const org = await Organization.findOne({createdBy});
-            if(!org){
-                const newOrg = await Organization.create({name,createdBy});
+            const createdBy = req.user._id;
+            const org = await Organization.findOne({ createdBy });
+            if (!org) {
+                const newOrg = await Organization.create({ name, createdBy });
                 const populatedOrg = await newOrg.populate("meta").execPopulate();
                 return res.status(200).send({
                     error: false,
@@ -20,8 +20,7 @@ module.exports = {
                 data: null,
                 message: `You already have a organization with name ${org.name}`
             });
-
-        }catch(e){
+        } catch (e) {
             Logger.error(`[ERROR] Error in creating Org ${e}`);
             return res.status(500).send({
                 error: true,
@@ -30,13 +29,13 @@ module.exports = {
             });
         }
     },
-    get: async(req,res,next) => {
-        try{
-            const {orgId} = req.params;
+    get: async (req, res) => {
+        try {
+            const { orgId } = req.params;
             const createdBy = req.user._id;
-            
-            const org = await Organization.findOne({createdBy,_id: orgId});
-            if(org){
+
+            const org = await Organization.findOne({ createdBy, _id: orgId });
+            if (org) {
                 return res.status(200).send({
                     error: false,
                     data: org,
@@ -46,9 +45,9 @@ module.exports = {
             return res.status(400).send({
                 error: true,
                 data: null,
-                message: `Incorrect info`
+                message: "Incorrect info"
             });
-        }catch(e){
+        } catch (e) {
             Logger.error(`[ERROR] Error in finding Org ${e}`);
             return res.status(500).send({
                 error: true,
@@ -57,28 +56,27 @@ module.exports = {
             });
         }
     },
-    search: async(req,res,next) => {
-        try{
+    search: async (req, res) => {
+        try {
             const {
                 q
             } = req.query;
-            if(q){
-                const orgNameRegex = new RegExp("^"+q, 'i')
-                const orgs = await Organization.find({name: orgNameRegex},"name _id").limit(10);
-                
+            if (q) {
+                const orgNameRegex = new RegExp(`^${q}`, "i");
+                const orgs = await Organization.find({ name: orgNameRegex }, "name _id").limit(10);
+
                 return res.status(200).send({
                     error: false,
                     data: orgs,
                     message: "OK"
                 });
-            }else{
-                return res.status(200).send({
-                    error: false,
-                    data: [],
-                    message: `search string should not be empty`
-                });
             }
-        }catch(e){
+            return res.status(200).send({
+                error: false,
+                data: [],
+                message: "search string should not be empty"
+            });
+        } catch (e) {
             Logger.error(`[ERROR] Error in Searching Org ${e}`);
             return res.status(500).send({
                 error: true,
@@ -87,4 +85,4 @@ module.exports = {
             });
         }
     }
-}
+};

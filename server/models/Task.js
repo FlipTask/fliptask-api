@@ -1,8 +1,8 @@
-const {Schema} = require("mongoose");
+const { Schema } = require("mongoose");
 
 const TaskSchema = new Schema({
-    description:{
-        type: String,
+    description: {
+        type: String
     },
     task_list: {
         index: true,
@@ -16,7 +16,7 @@ const TaskSchema = new Schema({
     title: {
         type: String,
         required: "Title is required to create a new task",
-        trim: true,
+        trim: true
     },
     due_date: {
         type: Date
@@ -27,16 +27,16 @@ const TaskSchema = new Schema({
             required: true
         }
     }],
-    assignee:{
+    assignee: {
         index: true,
         type: Schema.Types.ObjectId,
         ref: "User"
     },
-    sequence:{
+    sequence: {
         type: Number,
         default: 0
     },
-    createdBy:{
+    createdBy: {
         index: true,
         required: true,
         type: Schema.Types.ObjectId,
@@ -47,39 +47,39 @@ const TaskSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: "TaskComment"
     }]
-},{
+}, {
     timestamps: true
 });
 
-const updateTaskIdInTaskList = async(task) => {
-    if(task.isNew){
+const updateTaskIdInTaskList = async (task) => {
+    if (task.isNew) {
         const taskList = await TaskList.findById(task.task_list);
         taskList.tasks.push(task._id);
-        await taskList.save();   
+        await taskList.save();
     }
-}
+};
 
-const updateSequence = async(task) => {
-    if(task.isModified("sequence")){
+const updateSequence = async (task) => {
+    if (task.isModified("sequence")) {
         console.log("task sequence been updated !!");
     }
-    if(task.isNew){
-        const allTasksOfList = await Task.find({task_list: task.task_list});
-        if(allTasksOfList.length > 0){
+    if (task.isNew) {
+        const allTasksOfList = await Task.find({ task_list: task.task_list });
+        if (allTasksOfList.length > 0) {
             task.sequence = allTasksOfList.length + 1;
         }
     }
-}
+};
 
 
-TaskSchema.pre("save", async function(next){
+TaskSchema.pre("save", async function (next) {
     const task = this;
     /**
      *  Update tasklist
      */
     await updateTaskIdInTaskList(task);
     await updateSequence(task);
-    
+
     next();
 });
 

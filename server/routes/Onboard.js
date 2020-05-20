@@ -4,4 +4,4 @@ module.exports = [
         path: "/invite",
         handlers: ["Auth.authenticate", "OnBoardController.invite"]
     }
-]
+];

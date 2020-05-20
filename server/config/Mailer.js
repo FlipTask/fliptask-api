@@ -1,9 +1,8 @@
-const nodemailer = require('nodemailer');
-const sgTransport = require('nodemailer-sendgrid-transport');
+const nodemailer = require("nodemailer");
 
 const init = () => {
     try {
-        const env = process.env;
+        const { env } = process;
         return nodemailer.createTransport({
             service: env.MAILER_SERVICE_NAME,
             pool: true,
@@ -16,7 +15,8 @@ const init = () => {
         });
     } catch (e) {
         Logger.error(e);
-    } 
-}
+        return e;
+    }
+};
 
 module.exports = init;

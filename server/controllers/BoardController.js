@@ -1,13 +1,13 @@
 module.exports = {
-    create: async(req,res,next) => {
+    create: async (req, res) => {
         const {
             title
         } = req.body;
-        try{
-            const owner = req.user._id
-            const board = await Board.findOne({title,owner});
-            
-            if(!board){
+        try {
+            const owner = req.user._id;
+            const board = await Board.findOne({ title, owner });
+
+            if (!board) {
                 const newBoard = await Board.create({
                     title,
                     owner
@@ -23,7 +23,7 @@ module.exports = {
                 data: null,
                 message: `Board already exists with name ${board.title}`
             });
-        }catch(e){
+        } catch (e) {
             Logger.error(`[ERROR] Error in creating board ${e}`);
             return res.status(400).send({
                 error: true,
@@ -32,54 +32,54 @@ module.exports = {
             });
         }
     },
-    get: async(req,res,next) => {
-        const user = req.user;
-        const {boardId} = req.params;
-        try{
-            const extras = req.query.extras;
-            let findObj = {
+    get: async (req, res) => {
+        const { user } = req;
+        const { boardId } = req.params;
+        try {
+            const { extras } = req.query;
+            const findObj = {
                 owner: user._id
             };
-            let queryOptions = {};
+            const queryOptions = {};
             let funcName = "find";
-            if(boardId){
-                findObj._id = boardId
+            if (boardId) {
+                findObj._id = boardId;
                 funcName = "findOne";
             }
-            
-            if(funcName === "find"){
+
+            if (funcName === "find") {
                 queryOptions.sort = {
                     last_accessed_at: "desc"
-                }
+                };
             }
-            
+
             let populate = [];
-            const requestItems = extras && extras.split(",") || [];
-            if(requestItems.length > 0){
-                populate = requestItems.reduce((acc,key,arr) => {
+            const requestItems = (extras && extras.split(",")) || [];
+            if (requestItems.length > 0) {
+                populate = requestItems.reduce((acc, key) => {
                     let obj = {};
-                    if(requestItems.indexOf("tasks") > -1 && requestItems.indexOf("task_list") > -1 && key === "task_list"){
+                    if (requestItems.indexOf("tasks") > -1 && requestItems.indexOf("task_list") > -1 && key === "task_list") {
                         obj = {
                             path: "task_list",
                             populate: {
                                 path: "tasks"
                             }
-                        }
-                    }else{
-                        obj.path = key
+                        };
+                    } else {
+                        obj.path = key;
                     }
                     acc.push(obj);
                     return acc;
-                },[]);
+                }, []);
             }
             // console.log("populate", populate);
-            const boards = await Board[funcName](findObj,null,queryOptions).populate(populate);
+            const boards = await Board[funcName](findObj, null, queryOptions).populate(populate);
             return res.status(200).send({
                 error: false,
                 data: boards,
                 message: "OK"
             });
-        }catch(e){
+        } catch (e) {
             console.log(e);
             Logger.error(`[ERROR] Error in getting board ${e}`);
             return res.status(500).send({
@@ -89,43 +89,42 @@ module.exports = {
             });
         }
     },
-    updateListOrder: async(req,res,next) => {
-        try{
+    updateListOrder: async (req, res) => {
+        try {
             const {
-                task_list_id,
-                at_index
+                task_list_id: taskListId,
+                at_index: atIndex
             } = req.body;
-            const {boardId} = req.params;
+            const { boardId } = req.params;
             const board = await Board.findById(boardId);
-            if(board){
-                if(board.task_list.indexOf(task_list_id) > -1){
-                    const filterList = board.task_list.filter(id => id != task_list_id);
-                   
+            if (board) {
+                if (board.task_list.indexOf(taskListId) > -1) {
+                    const filterList = board.task_list.filter((id) => id !== taskListId);
+
                     board.task_list = [
-                        ...filterList.slice(0, at_index),
-                        task_list_id.toString(),
-                        ...filterList.slice(at_index)
-                    ]
+                        ...filterList.slice(0, atIndex),
+                        taskListId.toString(),
+                        ...filterList.slice(atIndex)
+                    ];
                     const updatedBoard = await board.save();
                     return res.status(200).send({
                         error: false,
                         data: updatedBoard,
                         message: "OK"
                     });
-                }else{
-                    return res.status(400).send({
-                        error: true,
-                        data: null,
-                        message: "Invalid tasklist id"
-                    });
                 }
+                return res.status(400).send({
+                    error: true,
+                    data: null,
+                    message: "Invalid tasklist id"
+                });
             }
             return res.status(400).send({
                 error: true,
                 data: null,
                 message: "Invalid board id"
             });
-        }catch(e){
+        } catch (e) {
             Logger.error(`[ERROR] Error in updating list order ${e}`);
             return res.status(500).send({
                 error: true,
@@ -134,4 +133,4 @@ module.exports = {
             });
         }
     }
-}
+};

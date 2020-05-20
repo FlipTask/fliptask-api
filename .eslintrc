@@ -1,0 +1,101 @@
+{
+    "root": true,
+    "plugins": ["progress"],
+    "env": {
+        "browser": true,
+        "es6": true,
+        "commonjs": true,
+        "node": true
+    },
+    "extends": [
+        "airbnb-base", "eslint:recommended", "plugin:node/recommended"
+    ],
+    "parserOptions": {
+        "ecmaVersion": 2020,
+        "sourceType": "module"
+    },
+    "rules": {
+        "progress/activate": 1,
+        "no-param-reassign": 0,
+        "no-console": "off",
+        "semi": [
+            "error", "always"
+        ],
+        "quotes": [
+            "error", "double"
+        ],
+        "indent": [
+            "error", 4
+        ],
+        "no-nested-ternary": "warn",
+        "prefer-destructuring": [
+            "warn", {
+                "VariableDeclarator": {
+                    "array": false,
+                    "object": true
+                },
+                "AssignmentExpression": {
+                    "array": true,
+                    "object": false
+                }
+            }, {
+                "enforceForRenamedProperties": false
+            }
+        ],
+        "consistent-return": ["error", { "treatUndefinedAsUnspecified": true }],
+        "func-names": ["error", "never"],
+        "no-underscore-dangle": [
+            "error", {
+                "allow": ["_id"]
+            }
+        ],
+        "comma-dangle": [
+            "error", {
+                "arrays": "never",
+                "objects": "never",
+                "imports": "never",
+                "exports": "never",
+                "functions": "never"
+            }
+        ],
+        "max-len": 0,
+        "import/no-extraneous-dependencies": [
+            "error", {
+                "devDependencies": true,
+                "optionalDependencies": true,
+                "peerDependencies": true
+            }
+        ],
+        "no-undef": "off",
+        "global-require": "off",
+        "import/no-dynamic-require": "off",
+        "node/exports-style": [
+            "error", "module.exports"
+        ],
+        "node/file-extension-in-import": [
+            "error", "always"
+        ],
+        "node/prefer-global/buffer": [
+            "error", "always"
+        ],
+        "node/prefer-global/console": [
+            "error", "always"
+        ],
+        "node/prefer-global/process": [
+            "error", "always"
+        ],
+        "node/prefer-global/url-search-params": [
+            "error", "always"
+        ],
+        "node/prefer-global/url": [
+            "error", "always"
+        ],
+        "node/prefer-promises/dns": "error",
+        "node/prefer-promises/fs": "error",
+        "no-plusplus": [
+            "error", {
+                "allowForLoopAfterthoughts": true
+            }
+        ]
+    }
+}

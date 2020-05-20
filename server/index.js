@@ -1,3 +1,3 @@
-const {loadApp} = require("./bootstrap");
+const { loadApp } = require("./bootstrap");
 
 loadApp();

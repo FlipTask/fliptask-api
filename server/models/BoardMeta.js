@@ -1,30 +1,30 @@
-const {Schema} = require("mongoose");
+const { Schema } = require("mongoose");
 
 const BoardMetaSchema = new Schema({
-    board:{
+    board: {
         index: true,
         type: Schema.Types.ObjectId,
         ref: "Board",
-        required: true,
+        required: true
     },
     isPrivate: {
         type: Boolean,
         default: true
     },
-    team:{
+    team: {
         type: Schema.Types.ObjectId,
         ref: "Team"
     }
-},{ 
+}, {
     timestamps: true
 });
 
 
-BoardMetaSchema.set('toJSON', {
-    transform: function (doc, ret, opt) {
-        delete ret['createdAt']
-        delete ret['updatedAt']
-        return ret
+BoardMetaSchema.set("toJSON", {
+    transform(doc, ret) {
+        delete ret.createdAt;
+        delete ret.updatedAt;
+        return ret;
     }
 });
 
