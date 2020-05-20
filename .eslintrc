@@ -92,10 +92,6 @@
         ],
         "node/prefer-promises/dns": "error",
         "node/prefer-promises/fs": "error",
-        "no-plusplus": [
-            "error", {
-                "allowForLoopAfterthoughts": true
-            }
-        ]
+        "no-plusplus": "off"
     }
 }
