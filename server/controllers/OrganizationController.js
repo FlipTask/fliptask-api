@@ -1,4 +1,4 @@
-export default {
+module.exports = {
     create: async(req, res, next) => {
         try{
             const {

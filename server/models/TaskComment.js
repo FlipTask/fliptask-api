@@ -1,4 +1,4 @@
-import {Schema} from "mongoose";
+const {Schema} = require("mongoose");
 
 const TaskCommentSchema = new Schema({
     task: {
@@ -22,4 +22,4 @@ const TaskCommentSchema = new Schema({
     timestamps: true
 });
 
-export default TaskCommentSchema;
+module.exports = TaskCommentSchema;

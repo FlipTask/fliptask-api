@@ -1,13 +1,13 @@
-import * as fs from "fs";
-import Path from "path";
+const fs = require("fs");
+const Path = require("path");
 
 const init = async() => {
-    const schemas = fs.readdirSync(Path.resolve(__dirname,"../server/models"));
+    const schemas = fs.readdirSync(Path.resolve(__dirname,"../models"));
     const resolvedSchemas = await schemas.reduce(async(acc,file) => {
         try{
-            const res = await import(`./../models/${file}`);
+            const res = await require(`./../models/${file}`);
             const dep = file.split(".")[0];
-            acc[dep] = await Mongoose.model(dep,res.default);
+            acc[dep] = await Mongoose.model(dep,res);
             global[dep] = acc[dep];
             console.info(`[INFO] Dependency [${file}] loaded from [models]`);
             return acc;
@@ -18,4 +18,4 @@ const init = async() => {
     return resolvedSchemas;
 }
 
-export default init;
+module.exports = init;

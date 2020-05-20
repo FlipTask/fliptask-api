@@ -1,4 +1,4 @@
-import {Schema} from "mongoose";
+const {Schema} = require("mongoose");
 
 const TaskListSchema = new Schema({
     title: {
@@ -46,4 +46,4 @@ TaskListSchema.set('toJSON', {
 });
 
 
-export default TaskListSchema;
+module.exports = TaskListSchema;

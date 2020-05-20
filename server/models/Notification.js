@@ -1,4 +1,4 @@
-import {Schema} from "mongoose";
+const {Schema} = require("mongoose");
 
 // ToDO
 
@@ -36,4 +36,4 @@ NotificationSchema.set('toJSON', {
 });
 
 
-export default NotificationSchema;
+module.exports = NotificationSchema;

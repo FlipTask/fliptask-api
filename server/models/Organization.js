@@ -1,4 +1,4 @@
-import {Schema} from "mongoose";
+const {Schema} = require("mongoose");
 
 const OrganizationSchema = new Schema({
     board_list:[{
@@ -95,4 +95,4 @@ OrganizationSchema.set('toJSON', {
     }
 });
 
-export default OrganizationSchema;
+module.exports = OrganizationSchema;

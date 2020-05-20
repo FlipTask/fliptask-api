@@ -1,13 +1,13 @@
-import * as fs from "fs";
-import Path from "path";
+const fs = require("fs");
+const Path = require("path");
 
 const init = async() => {
-    const middlewares = fs.readdirSync(Path.resolve(__dirname,"../server/middlewares"));
+    const middlewares = fs.readdirSync(Path.resolve(__dirname,"../middlewares"));
     const resolvedmiddlewares = await middlewares.reduce(async(acc,file) => {
         try{
-            const res = await import(`./../middlewares/${file}`);
+            const res = await require(`./../middlewares/${file}`);
             const dep = file.split(".")[0];
-            acc[dep] = res.default;
+            acc[dep] = res;
             global[dep] = acc[dep];
             console.info(`[INFO] Dependency [${file}] loaded from [middlewares]`);
             return acc;
@@ -18,4 +18,4 @@ const init = async() => {
     return resolvedmiddlewares;
 }
 
-export default init;
+module.exports = init;

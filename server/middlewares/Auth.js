@@ -1,6 +1,6 @@
-import * as jwt from "jsonwebtoken";
+const jwt = require("jsonwebtoken");
 
-export default {
+module.exports = {
     authenticate: async(req,res,next) => {
         try {
             let token;

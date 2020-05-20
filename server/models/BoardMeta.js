@@ -1,4 +1,4 @@
-import {Schema} from "mongoose";
+const {Schema} = require("mongoose");
 
 const BoardMetaSchema = new Schema({
     board:{
@@ -28,4 +28,4 @@ BoardMetaSchema.set('toJSON', {
     }
 });
 
-export default BoardMetaSchema;
+module.exports = BoardMetaSchema;

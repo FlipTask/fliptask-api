@@ -1,6 +1,6 @@
-import * as fs from "fs";
-import Path from "path";
-import express from "express";
+const fs = require("fs");
+const Path = require("path");
+const express = require("express");
 
 const convertHandlersStringToFunction = async(handlers) => {
     const splitHandlers = handlers.split(".");
@@ -49,14 +49,14 @@ const createRouter = async(routeName,routes = []) => {
 }
 
 const init = async() => {
-    const routes = fs.readdirSync(Path.resolve(__dirname,"../server/routes"));
+    const routes = fs.readdirSync(Path.resolve(__dirname,"../routes"));
     let allRoutes = [];
     for(let i = 0 ; i < routes.length ; i++){
         const file = routes[i];
         try{
-            const res = await import(`./../routes/${file}`);
+            const res = await require(`../routes/${file}`);
             const dep = file.split(".")[0];
-            const router = await createRouter(dep,res.default);
+            const router = await createRouter(dep,res);
             allRoutes.push({
                 routeName: `${dep}Routes`,
                 basePath: `/${dep.toLowerCase()}`,
@@ -71,4 +71,4 @@ const init = async() => {
     return allRoutes;
 }
 
-export default init;
+module.exports = init;

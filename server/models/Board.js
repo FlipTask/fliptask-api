@@ -1,4 +1,4 @@
-import {Schema} from "mongoose";
+const { Schema } = require("mongoose");
 
 const BoardSchema = new Schema({
     last_accessed_at:{
@@ -100,4 +100,4 @@ BoardSchema.set('toJSON', {
     }
 });
 
-export default BoardSchema;
+module.exports = BoardSchema;

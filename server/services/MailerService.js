@@ -1,6 +1,6 @@
-import Invitation from "./../mailTemplates/invitation";
+const Invitation = require("./../mailTemplates/invitation");
 
-export default {
+module.exports = {
     sendInvitation: async(from, to) => {
         const invitationLink = `${process.env.HOST_URL}/join?u=${from._id}&env=${to}&org=${from.meta.organization}`
         const invitationTemplate = await Invitation(from,invitationLink);

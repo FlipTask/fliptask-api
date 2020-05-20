@@ -1,18 +1,18 @@
 
-# Fliptask (Task Management)
+# FlipTask (Task Management)
 
 ### Prerequisite
 You have to install following dependencies to start:
 
 - `MongoDB`
-- `Node.js` version >= 8.x
+- `Node.js` version >= 10.x
 
 ### After installing all the prerequisite:
 
 Steps to follow
 
-1.  Clone Fliptask
-2.  Change the current directory to `fliptask`.
+1.  Clone Fliptask-API
+2.  Change the current directory to `fliptask-api`.
 ```
 cd tasify
 ```

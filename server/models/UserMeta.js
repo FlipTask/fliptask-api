@@ -1,4 +1,4 @@
-import {Schema} from "mongoose";
+const {Schema} = require("mongoose");
 
 const UserMetaSchema = new Schema({
     user: {
@@ -46,4 +46,4 @@ UserMetaSchema.set('toJSON', {
 });
 
 
-export default UserMetaSchema;
+module.exports = UserMetaSchema;

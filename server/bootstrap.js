@@ -1,7 +1,13 @@
+const path = require("path");
+const env = process.env.NODE_ENV === "production" ? "prod.env" : "dev.env";
+require('dotenv').config({ 
+    path: path.resolve(__dirname, `../env/${env}`)
+});
+
 const loadDependency = async(type, dep, moduleObj) => {
     try{
-        const res = await import(`./${type}/${dep}`);
-        global[dep] = typeof(res.default) === "function" ? await res.default(moduleObj) : await res.default;
+        const res = await require(`./${type}/${dep}`);
+        global[dep] = typeof(res) === "function" ? await res(moduleObj) : await res;
         moduleObj[dep] = global[dep];
         console.info(`[INFO] Dependency [${dep}] loaded from [${type}]`);
         return global[dep];
@@ -10,6 +16,9 @@ const loadDependency = async(type, dep, moduleObj) => {
     }
 }
 const configuration = {
+    services: [
+        "MailerService"
+    ],
     config: [
         "Multer",
         "Mailer",
@@ -21,9 +30,6 @@ const configuration = {
         "Route",
         "Express",
     ],
-    services: [
-        "MailerService"
-    ]
 }
 const loadConfig = async() => {  
     let moduleObj = {};
@@ -37,6 +43,12 @@ const loadConfig = async() => {
         }
     }
 }
-export const loadApp = async() => {
+const loadApp = async() => {
     await loadConfig();
+}
+
+module.exports = {
+    loadApp,
+    loadConfig,
+    loadDependency
 }

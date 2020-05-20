@@ -1,7 +1,7 @@
-import {Schema} from "mongoose";
-import {validateEmail} from "../helpers/Validators";
-import * as bcrypt from "bcrypt";
-import * as jwt from "jsonwebtoken";
+const {Schema} = require("mongoose");
+const {validateEmail} = require("../helpers/Validators");
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 const SALT_WORK_FACTOR = 10;
 
 const UserSchema = new Schema({
@@ -151,4 +151,4 @@ UserSchema.set('toJSON', {
     }
 });
 
-export default UserSchema;
+module.exports = UserSchema;

@@ -23,4 +23,4 @@ const init = () => {
     return util.promisify(upload);
 }
 
-export default init;
+module.exports = init;

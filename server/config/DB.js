@@ -1,5 +1,4 @@
-import Mongoose from "mongoose";
-
+const Mongoose = require("mongoose");
 Mongoose.Promise = global.Promise;
 
 const init = async() => {
@@ -21,4 +20,4 @@ const init = async() => {
         Logger.error('Could not connect to MongoDB');
     }
 }
-export default init;
+module.exports = init;

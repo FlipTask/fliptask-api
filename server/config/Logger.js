@@ -1,6 +1,6 @@
-import * as winston from 'winston';
-import * as rotate from 'winston-daily-rotate-file';
-import * as fs from 'fs';
+const winston = require("winston");
+const rotate = require("winston-daily-rotate-file");
+const fs = require("fs");
 
 const dir = process.env.LOG_DIR;
 
@@ -27,4 +27,4 @@ const init = async() => {
 }
 
 
-export default init;
+module.exports = init;

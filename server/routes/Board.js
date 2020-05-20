@@ -1,4 +1,4 @@
-export default [
+module.exports = [
     {
         path: "/create",
         type: "POST",

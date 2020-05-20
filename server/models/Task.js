@@ -1,4 +1,4 @@
-import {Schema} from "mongoose";
+const {Schema} = require("mongoose");
 
 const TaskSchema = new Schema({
     description:{
@@ -83,4 +83,4 @@ TaskSchema.pre("save", async function(next){
     next();
 });
 
-export default TaskSchema;
+module.exports = TaskSchema;

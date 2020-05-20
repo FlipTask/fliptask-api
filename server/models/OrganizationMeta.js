@@ -1,4 +1,4 @@
-import {Schema} from "mongoose";
+const {Schema} = require("mongoose");
 
 const OrganizationMetaSchema = new Schema({
     organization: {
@@ -23,4 +23,4 @@ OrganizationMetaSchema.set('toJSON', {
     }
 });
 
-export default OrganizationMetaSchema;
+module.exports = OrganizationMetaSchema;

@@ -1,4 +1,4 @@
-import {Schema} from "mongoose";
+const {Schema} = require("mongoose");
 
 const TeamSchema = new Schema({
     createdBy: {
@@ -64,4 +64,4 @@ TeamSchema.set('toJSON', {
 });
 
 
-export default TeamSchema;
+module.exports = TeamSchema;
