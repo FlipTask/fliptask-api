@@ -8,7 +8,6 @@ const init = () => {
         destination: (req, file, callback) => {
             callback(null, path.resolve(__dirname, "../upload"));
         },
-        // eslint-disable-next-line consistent-return
         filename: (req, file, callback) => {
             const match = ["image/png", "image/jpeg", "image/jpg"];
 
@@ -17,7 +16,7 @@ const init = () => {
                 return callback(message, null);
             }
             const filename = `${Date.now()}-${req.query.taskId}-${file.originalname}`;
-            callback(null, filename);
+            return callback(null, filename);
         }
     });
     const upload = multer({ storage }).array("files");
