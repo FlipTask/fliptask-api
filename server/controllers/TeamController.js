@@ -36,5 +36,36 @@ module.exports = {
                 message: "Something went wrong!"
             });
         }
-    }
+    },
+    get: async (req, res) => {
+        try {
+            const { teamId } = req.params;
+            const org = await Team.findOne(
+                { _id: teamId }
+            ).populate({
+                path: "member_list",
+                populate: ["member_list"]
+            });
+
+            if (org) {
+                return res.status(200).send({
+                    error: false,
+                    data: org,
+                    message: "OK"
+                });
+            }
+            return res.status(400).send({
+                error: true,
+                data: null,
+                message: "Incorrect info"
+            });
+        } catch (e) {
+            Logger.error(`[ERROR] Error in finding Team ${e}`);
+            return res.status(500).send({
+                error: true,
+                data: null,
+                message: "Something went wrong!"
+            });
+        }
+    },
 };
