@@ -1,8 +1,9 @@
 
 # FlipTask (Task Management)
 
-### Prerequisite
-You have to install following dependencies to start:
+## Prerequisite
+
+You need to have following in order to run the project:
 
 - `MongoDB`
 - `Node.js` version >= 10.x
@@ -11,28 +12,13 @@ You have to install following dependencies to start:
 
 Steps to follow
 
-1.  Clone Fliptask-API
-2.  Change the current directory to `fliptask-api`.
+1. Clone Fliptask-API
+2. Change the current directory to `fliptask-api`.
+3. Install dependencies
+```bash
+npm install
 ```
-cd tasify
-```
-3. Run the install script `install.sh`
-```
-bash ./install.sh
-```
-4. To start the server run:
-```
-npm run dev 
-```
-
-> open <http://localhost:3000> in browser.
-
-### Possible Errors and its solutions
-If get any `error` in running `install.sh`,  example : 
-```
-permission denied: ./install.sh
-```
-change the permission to execute the bash script, run
-```
-chmod 0700 install.sh
+4. Start the server
+```bash
+npm run dev
 ```

@@ -7,3 +7,5 @@
 /upload/*.png
 /upload/*.jpeg
 /env/dev.env
+
+package-lock.json
