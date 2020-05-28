@@ -1,3 +1,4 @@
+[![Known Vulnerabilities](https://snyk.io/test/github/fliptask/fliptask-api/badge.svg)](https://snyk.io/test/github/fliptask/fliptask-api)
 
 # FlipTask (Task Management)
 
