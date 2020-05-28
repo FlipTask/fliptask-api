@@ -1,62 +1,62 @@
 {
-    "name": "open-trello",
-    "version": "1.0.0",
-    "description": "Task Management",
-    "main": "index.js",
-    "scripts": {
-        "dev": "nodemon --watch server --exec \"NODE_ENV=development node --inspect server/index.js\"",
-        "prod": "NODE_ENV=production node --inspect server/index.js",
-        "lint": "./node_modules/eslint-watch/bin/esw --color",
-        "lint:watch": "npm run lint --watch"
-    },
-    "author": "Ashish Kumar",
-    "license": "ISC",
-    "dependencies": {
-        "bcrypt": "^4.0.1",
-        "body-parser": "^1.19.0",
-        "compression": "^1.7.4",
-        "cookie-parser": "^1.4.5",
-        "cors": "^2.8.5",
-        "dotenv": "^8.2.0",
-        "express": "^4.17.1",
-        "express-http-proxy": "^1.6.0",
-        "express-validator": "^6.4.0",
-        "install": "^0.13.0",
-        "jsonwebtoken": "^8.5.1",
-        "mongoose": "^5.9.9",
-        "morgan": "^1.10.0",
-        "multer": "^1.4.2",
-        "nodemailer": "^6.4.6",
-        "nodemailer-sendgrid-transport": "^0.2.0",
-        "npm": "^6.14.5",
-        "npm-run-all": "^4.1.5",
-        "winston": "^3.2.1",
-        "winston-daily-rotate-file": "^4.4.2"
-    },
-    "devDependencies": {
-        "@commitlint/cli": "^8.3.5",
-        "@commitlint/config-conventional": "^8.3.4",
-        "eslint": "^7.0.0",
-        "eslint-config-airbnb-base": "^14.1.0",
-        "eslint-plugin-import": "^2.20.2",
-        "eslint-plugin-node": "^11.1.0",
-        "eslint-plugin-progress": "github:taskworld/eslint-plugin-progress",
-        "eslint-plugin-react": "^7.20.0",
-        "eslint-watch": "^6.0.1",
-        "husky": "^4.2.5"
-    },
-    "standard": {
-        "globals": [
-            "localStorage",
-            "window"
-        ]
-    },
-    "engines": {
-        "node": "10.x"
-    },
-    "husky": {
-        "hooks": {
-            "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-        }
+  "name": "open-trello",
+  "version": "1.0.0",
+  "description": "Task Management",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon --watch server --exec \"NODE_ENV=development node --inspect server/index.js\"",
+    "prod": "NODE_ENV=production node --inspect server/index.js",
+    "lint": "./node_modules/eslint-watch/bin/esw --color",
+    "lint:watch": "npm run lint --watch"
+  },
+  "author": "Ashish Kumar",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^4.0.1",
+    "body-parser": "^1.19.0",
+    "compression": "^1.7.4",
+    "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-http-proxy": "^1.6.0",
+    "express-validator": "^6.4.0",
+    "install": "^0.13.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.9.9",
+    "morgan": "^1.10.0",
+    "multer": "^1.4.2",
+    "nodemailer": "^6.4.6",
+    "nodemailer-sendgrid-transport": "^0.2.0",
+    "npm": "^6.14.5",
+    "npm-run-all": "^4.1.5",
+    "winston": "^3.2.1",
+    "winston-daily-rotate-file": "^4.4.2"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^8.3.5",
+    "@commitlint/config-conventional": "^8.3.4",
+    "eslint": "^7.0.0",
+    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-progress": "github:taskworld/eslint-plugin-progress",
+    "eslint-plugin-react": "^7.20.0",
+    "eslint-watch": "^6.0.1",
+    "husky": "^4.2.5"
+  },
+  "standard": {
+    "globals": [
+      "localStorage",
+      "window"
+    ]
+  },
+  "engines": {
+    "node": "10.x"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
+  }
 }
