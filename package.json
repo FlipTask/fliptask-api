@@ -34,13 +34,16 @@
         "winston-daily-rotate-file": "^4.4.2"
     },
     "devDependencies": {
+        "@commitlint/cli": "^8.3.5",
+        "@commitlint/config-conventional": "^8.3.4",
         "eslint": "^7.0.0",
         "eslint-config-airbnb-base": "^14.1.0",
         "eslint-plugin-import": "^2.20.2",
         "eslint-plugin-node": "^11.1.0",
         "eslint-plugin-progress": "github:taskworld/eslint-plugin-progress",
         "eslint-plugin-react": "^7.20.0",
-        "eslint-watch": "^6.0.1"
+        "eslint-watch": "^6.0.1",
+        "husky": "^4.2.5"
     },
     "standard": {
         "globals": [
@@ -50,5 +53,10 @@
     },
     "engines": {
         "node": "10.x"
+    },
+    "husky": {
+        "hooks": {
+            "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+        }
     }
 }
