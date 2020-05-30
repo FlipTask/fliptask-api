@@ -1,7 +1,7 @@
 const Sequelize = require("sequelize");
 const sequelize = require("../database");
 
-const TaskList = sequelize.define("task_list", {
+const Organisation = sequelize.define("organisation", {
     name: {
         type: Sequelize.STRING(50),
         allowNull: false
@@ -12,7 +12,6 @@ const TaskList = sequelize.define("task_list", {
     freezeTableName: true
 });
 
-TaskList.belongsTo(User, { foreignKey: "createdBy" });
-TaskList.belongsTo(Workspace);
+Organisation.belongsTo(User, { foreignKey: "created_by" });
 
-global.TaskList = TaskList;
+global.Organisation = Organisation;

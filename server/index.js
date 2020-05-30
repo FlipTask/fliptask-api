@@ -20,11 +20,11 @@ const configuration = {
         "Multer",
         "Mailer",
         "Logger",
-        "DB",
-        "Model",
+        // "DB",
+        // "Model",
         "Middleware",
-        "Controller",
-        "Route",
+        // "Controller",
+        // "Route",
         "Express"
     ]
 };
@@ -47,3 +47,6 @@ const loadApp = async () => {
 };
 
 loadApp();
+
+require("./database");
+require("./models");

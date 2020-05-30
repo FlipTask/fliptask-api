@@ -1,25 +1,18 @@
-const { Schema } = require("mongoose");
+const Sequelize = require("sequelize");
+const sequelize = require("../database");
 
-const TaskCommentSchema = new Schema({
-    task: {
-        index: true,
-        required: true,
-        type: Schema.Types.ObjectId,
-        ref: "Task"
-    },
-    creator: {
-        index: true,
-        required: true,
-        type: Schema.Types.ObjectId,
-        ref: "User"
-    },
+const TaskComment = sequelize.define("task_comment", {
     message: {
-        type: String,
-        trim: true,
-        required: "Comment can not be created without a message."
+        type: Sequelize.TEXT,
+        allowNull: false
     }
 }, {
-    timestamps: true
+    paranoid: true,
+    underscored: true,
+    freezeTableName: true
 });
 
-module.exports = TaskCommentSchema;
+TaskComment.belongsTo(User, { foreignKey: "createdBy" });
+TaskComment.belongsTo(Task);
+
+global.TaskComment = TaskComment;
