@@ -4,7 +4,12 @@ const sequelize = require("../database");
 const Workspace = sequelize.define("workspace", {
     name: {
         type: Sequelize.STRING(50),
-        allowNull: false
+        allowNull: false,
+        validate: {
+            notNull: {
+                msg: "Name is required."
+            }
+        }
     },
     isPrivate: Sequelize.BOOLEAN
 }, {

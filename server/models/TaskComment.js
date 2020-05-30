@@ -4,7 +4,12 @@ const sequelize = require("../database");
 const TaskComment = sequelize.define("task_comment", {
     message: {
         type: Sequelize.TEXT,
-        allowNull: false
+        allowNull: false,
+        validate: {
+            notNull: {
+                msg: "Text is required."
+            }
+        }
     }
 }, {
     paranoid: true,
@@ -13,6 +18,9 @@ const TaskComment = sequelize.define("task_comment", {
 });
 
 TaskComment.belongsTo(User, { foreignKey: "createdBy" });
+User.hasMany(TaskComment, { as: "createdComments", foreignKey: "createdBy" });
+
 TaskComment.belongsTo(Task);
+Task.hasMany(TaskComment);
 
 global.TaskComment = TaskComment;

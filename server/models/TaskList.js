@@ -4,7 +4,12 @@ const sequelize = require("../database");
 const TaskList = sequelize.define("task_list", {
     name: {
         type: Sequelize.STRING(50),
-        allowNull: false
+        allowNull: false,
+        validate: {
+            notNull: {
+                msg: "Name is required."
+            }
+        }
     }
 }, {
     paranoid: true,
@@ -13,6 +18,9 @@ const TaskList = sequelize.define("task_list", {
 });
 
 TaskList.belongsTo(User, { foreignKey: "createdBy" });
+User.hasMany(TaskList, { as: "createdTaskLists", foreignKey: "createdBy" });
+
 TaskList.belongsTo(Workspace);
+Workspace.hasMany(TaskList);
 
 global.TaskList = TaskList;

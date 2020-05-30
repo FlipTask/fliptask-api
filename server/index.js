@@ -13,7 +13,7 @@ const loadDependency = async (type, dep, moduleObj) => {
     }
 };
 const configuration = {
-    services: [
+    metaServices: [
         "MailerService"
     ],
     bootstrap: [
@@ -44,9 +44,17 @@ const loadConfig = async () => {
 
 const loadApp = async () => {
     await loadConfig();
+    require("./database");
+    require("./models");
+    require("./services");
+    require("./controllers");
+    require("./routes");
+
+    const { PORT } = process.env;
+    expressApp.listen(PORT, () => {
+        console.log(`App listening to ${PORT}....`);
+        console.log("Press Ctrl+C to quit.");
+    });
 };
 
 loadApp();
-
-require("./database");
-require("./models");

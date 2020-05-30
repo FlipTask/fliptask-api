@@ -32,16 +32,12 @@ const init = async (moduleObj) => {
 
     // app.options("*", cors(corsOptions));
     app.use(cors(corsOptions));
-    for (let i = 0; i < moduleObj.Route.length; i++) {
-        const route = moduleObj.Route[i];
-        app.use("/api", route.router);
-    }
+    // for (let i = 0; i < moduleObj.Route.length; i++) {
+    //     const route = moduleObj.Route[i];
+    //     app.use("/api", route.router);
+    // }
 
-    const PORT = process.env.PORT;
-    app.listen(PORT, () => {
-        console.log(`App listening to ${PORT}....`);
-        console.log("Press Ctrl+C to quit.");
-    });
+    global.expressApp = app;
 };
 
 module.exports = init;

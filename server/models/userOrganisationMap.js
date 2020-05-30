@@ -12,5 +12,6 @@ const UserOrganisationMap = sequelize.define("user_organisation_map", {
 });
 
 User.belongsToMany(Organisation, { through: UserOrganisationMap });
+Organisation.belongsToMany(User, { as: "members", through: UserOrganisationMap });
 
 global.UserOrganisationMap = UserOrganisationMap;

@@ -12,5 +12,6 @@ const UserTeamMap = sequelize.define("user_team_map", {
 });
 
 User.belongsToMany(Team, { through: UserTeamMap });
+Team.belongsToMany(User, { as: "members", through: UserTeamMap });
 
 global.UserTeamMap = UserTeamMap;
