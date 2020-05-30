@@ -1,11 +1,11 @@
 {
-    "name": "open-trello",
-    "version": "1.0.0",
+    "name": "fliptask",
+    "version": "1.0.1",
     "description": "Task Management",
     "main": "index.js",
     "scripts": {
-        "dev": "nodemon --watch server --exec \"NODE_ENV=development node --inspect server/index.js\"",
-        "prod": "NODE_ENV=production node --inspect server/index.js",
+        "dev": "nodemon --watch server --exec \"node --inspect server/index.js\"",
+        "prod": "node server/index.js",
         "lint": "./node_modules/eslint-watch/bin/esw --color",
         "lint:watch": "npm run lint --watch"
     },

@@ -12,7 +12,7 @@ const init = async () => {
             useUnifiedTopology: true,
             useCreateIndex: true
         });
-        Logger.info("Connected to mongo!!!");
+        // Logger.info("Connected to mongo!!!");
         global.Mongoose = db;
         global.Schema = db.Schema;
         return db;

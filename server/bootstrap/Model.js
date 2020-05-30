@@ -9,7 +9,7 @@ const init = async () => {
             const dep = file.split(".")[0];
             acc[dep] = await Mongoose.model(dep, res);
             global[dep] = acc[dep];
-            console.info(`[INFO] Dependency [${file}] loaded from [models]`);
+            // console.info(`[INFO] Dependency [${file}] loaded from [models]`);
             return acc;
         } catch (e) {
             console.error(`[Error] Unable to load ${file}`, e);

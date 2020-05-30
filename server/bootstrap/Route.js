@@ -68,7 +68,7 @@ const init = async () => {
                 basePath: `/${dep.toLowerCase()}`,
                 router
             });
-            console.info(`[INFO] Dependency [${file}] loaded from [routes]`);
+            // console.info(`[INFO] Dependency [${file}] loaded from [routes]`);
         } catch (e) {
             console.error(`[Error] Unable to load ${file}`, e);
         }
