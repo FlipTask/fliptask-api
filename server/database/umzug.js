@@ -2,12 +2,12 @@ const Umzug = require("umzug");
 const sequelize = require("./sequelize");
 
 const umzug = new Umzug({
-  migrations : {
-    path : "./server/database/migrations",
-    params : [ sequelize.getQueryInterface() ]
+  migrations: {
+    path: "./server/database/migrations",
+    params: [sequelize.getQueryInterface()],
   },
-  storage : "sequelize",
-  storageOptions : {sequelize}
+  storage: "sequelize",
+  storageOptions: { sequelize },
 });
 
 (async () => {

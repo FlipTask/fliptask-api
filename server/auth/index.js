@@ -4,4 +4,4 @@ global.passport = passport;
 
 require("./passportHttpBearer");
 
-global.bearerAuth = passport.authenticate("bearer", {session : false});
+global.bearerAuth = passport.authenticate("bearer", { session: false });

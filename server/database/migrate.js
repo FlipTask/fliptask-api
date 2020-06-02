@@ -1,3 +1,3 @@
 const sequelize = require("./sequelize");
 
-sequelize.sync({alter : true});
+sequelize.sync({ alter: true });

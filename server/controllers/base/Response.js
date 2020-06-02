@@ -1,11 +1,10 @@
 class Response {
-  static success =
-      (res, data = null,
-       statusCode =
-           200) => { res.status(statusCode).json({error : false, data}); }
+  static success = (res, data = null, statusCode = 200) => {
+    res.status(statusCode).json({ error: false, data });
+  };
 
   static error = (res, error = null, statusCode = 500) => {
-    console.log(error)
+    console.log(error);
 
     let messages = {};
 
@@ -17,10 +16,10 @@ class Response {
           acc[item.path] = item.message;
         }
         return acc;
-      }, {})
+      }, {});
     }
-    res.status(statusCode).json({error : true, data : null, messages});
-  }
+    res.status(statusCode).json({ error: true, data: null, messages });
+  };
 }
 
 module.exports = Response;

@@ -2,17 +2,19 @@ const Sequelize = require("sequelize");
 const sequelize = require("../database");
 
 const Workspace = sequelize.define(
-    "workspace", {
-      name : {
-        type : Sequelize.STRING(50),
-        allowNull : false,
-        validate : {notNull : {msg : "Name is required."}}
-      },
-      isPrivate : Sequelize.BOOLEAN
+  "workspace",
+  {
+    name: {
+      type: Sequelize.STRING(50),
+      allowNull: false,
+      validate: { notNull: { msg: "Name is required." } },
     },
-    {paranoid : true, underscored : true, freezeTableName : true});
+    isPrivate: Sequelize.BOOLEAN,
+  },
+  { paranoid: true, underscored: true, freezeTableName: true }
+);
 
-Workspace.belongsTo(User, {foreignKey : "createdBy"});
+Workspace.belongsTo(User, { foreignKey: "createdBy" });
 Workspace.belongsTo(Organisation);
 Workspace.belongsTo(Team);
 

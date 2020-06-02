@@ -3,8 +3,7 @@ require("dotenv").config();
 const loadDependency = async (type, dep, moduleObj) => {
   try {
     const res = await require(`./${type}/${dep}`);
-    global[dep] =
-        typeof (res) === "function" ? await res(moduleObj) : await res;
+    global[dep] = typeof res === "function" ? await res(moduleObj) : await res;
     moduleObj[dep] = global[dep];
     // console.info(`[INFO] Dependency [${dep}] loaded from [${type}]`);
     return global[dep];
@@ -14,16 +13,18 @@ const loadDependency = async (type, dep, moduleObj) => {
   }
 };
 const configuration = {
-  metaServices : [ "MailerService" ],
-  bootstrap : [
-    "Multer", "Mailer", "Logger",
+  metaServices: ["MailerService"],
+  bootstrap: [
+    "Multer",
+    "Mailer",
+    "Logger",
     // "DB",
     // "Model",
     "Middleware",
     // "Controller",
     // "Route",
-    "Express"
-  ]
+    "Express",
+  ],
 };
 const loadConfig = async () => {
   const moduleObj = {};
@@ -49,7 +50,7 @@ const loadApp = async () => {
   require("./auth");
   require("./routes");
 
-  const {PORT} = process.env;
+  const { PORT } = process.env;
   expressApp.listen(PORT, () => {
     console.log(`App listening to ${PORT}....`);
     console.log("Press Ctrl+C to quit.");
