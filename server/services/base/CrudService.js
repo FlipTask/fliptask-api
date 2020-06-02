@@ -9,8 +9,6 @@ class CrudService {
         limit = parseInt(limit) || this.pageSize;
         page = parseInt(page) || 1;
 
-        console.log(include);
-
         if (include) include = include.split(' ');
 
         let order = null;
@@ -26,8 +24,6 @@ class CrudService {
         }
 
         const offset = (page - 1) * this.pageSize;
-
-        console.log(include);
 
         const result = await this.model.findAndCountAll({
             where,
