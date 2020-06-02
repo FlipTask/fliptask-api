@@ -6,30 +6,35 @@ class CrudRouter {
         this.routes = {
             "/": {
                 get: [
+                    bearerAuth,
                     this.controller.list
                 ],
                 post: [
+                    bearerAuth,
                     this.controller.create
                 ]
             },
             "/:id": {
                 get: [
+                    bearerAuth,
                     this.controller.get
                 ],
                 patch: [
+                    bearerAuth,
                     this.controller.update
                 ],
                 delete: [
+                    bearerAuth,
                     this.controller.delete
                 ]
-            },
+            }
         };
     }
 
-    addRoutes = async (routes) => {
+    mergeRoutes = async (routes) => {
         this.routes = {
-            ...this.routes,
-            ...routes
+            ...routes,
+            ...this.routes
         }
     }
 

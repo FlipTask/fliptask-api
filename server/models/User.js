@@ -22,6 +22,10 @@ const User = sequelize.define("user", {
     },
     email: {
         type: Sequelize.STRING(200),
+        unique: {
+            args: true,
+            msg: "This email id is already registered."
+        },
         allowNull: false,
         validate: {
             notNull: {
@@ -39,7 +43,15 @@ const User = sequelize.define("user", {
 }, {
     paranoid: true,
     underscored: true,
-    freezeTableName: true
+    freezeTableName: true,
+    defaultScope: {
+        attributes: { exclude: ["password"] }
+    },
+    scopes: {
+        withPassword: {
+            attributes: {}
+        }
+    }
 });
 
 global.User = User;

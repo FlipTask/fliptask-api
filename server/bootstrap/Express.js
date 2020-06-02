@@ -14,7 +14,7 @@ const httpLogger = morgan((tokens, req, res) => [
 ].join(" "));
 
 
-const init = async (moduleObj) => {
+const init = async () => {
     const app = express();
 
     app.use("/assets/", express.static(Path.resolve(__dirname, "./../assets")));
@@ -30,12 +30,7 @@ const init = async (moduleObj) => {
         optionsSuccessStatus: 200
     };
 
-    // app.options("*", cors(corsOptions));
     app.use(cors(corsOptions));
-    // for (let i = 0; i < moduleObj.Route.length; i++) {
-    //     const route = moduleObj.Route[i];
-    //     app.use("/api", route.router);
-    // }
 
     global.expressApp = app;
 };

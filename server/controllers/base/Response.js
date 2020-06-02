@@ -4,9 +4,13 @@ class Response {
     }
 
     static error = (res, error = null, statusCode = 500) => {
-        if (error) console.log(error);
-        let messages = [];
-        if ("errors" in error && error["errors"].length) {
+        console.log(error)
+
+        let messages = {};
+        
+        if (typeof error === "string") {
+            messages["error"] = error;
+        } else if ("errors" in error && error["errors"].length) {
             messages = error["errors"].reduce((acc, item) => {
                 if (item.path && item.message) {
                     acc[item.path] = item.message;

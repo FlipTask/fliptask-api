@@ -48,6 +48,7 @@ const loadApp = async () => {
     require("./models");
     require("./services");
     require("./controllers");
+    require("./auth");
     require("./routes");
 
     const { PORT } = process.env;

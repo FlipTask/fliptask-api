@@ -14,3 +14,4 @@ sequelize.authenticate()
     });
 
 module.exports = sequelize;
+global.Sequelize = Sequelize;
