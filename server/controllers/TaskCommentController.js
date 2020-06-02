@@ -1,3 +1,3 @@
-const CrudController = require("./CrudController");
+const CrudController = require("./base/CrudController");
 
-module.exports = new CrudController(TaskComment);
+global.TaskCommentController = new CrudController(TaskCommentService);

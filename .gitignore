@@ -6,4 +6,5 @@
 /upload/*.jpg
 /upload/*.png
 /upload/*.jpeg
-/env/dev.env
+.env
+.vscode

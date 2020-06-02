@@ -1,7 +1,7 @@
 const Sequelize = require("sequelize");
 const sequelize = require("../database");
 
-const Team = sequelize.define("team", {
+const Organisation = sequelize.define("organisation", {
     name: {
         type: Sequelize.STRING(50),
         allowNull: false,
@@ -17,10 +17,7 @@ const Team = sequelize.define("team", {
     freezeTableName: true
 });
 
-Team.belongsTo(User, { foreignKey: "createdBy" });
-User.hasMany(Team, { as: "createdTeams", foreignKey: "createdBy" });
+Organisation.belongsTo(User, { foreignKey: "createdBy" });
+User.hasMany(Organisation, { as: "createdOrganisations", foreignKey: "createdBy" });
 
-Team.belongsTo(Organisation);
-Organisation.hasMany(Team);
-
-global.Team = Team;
+global.Organisation = Organisation;

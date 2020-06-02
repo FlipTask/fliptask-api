@@ -1,7 +1,7 @@
 const Sequelize = require("sequelize");
 const sequelize = require("../database");
 
-const Team = sequelize.define("team", {
+const Workspace = sequelize.define("workspace", {
     name: {
         type: Sequelize.STRING(50),
         allowNull: false,
@@ -10,17 +10,16 @@ const Team = sequelize.define("team", {
                 msg: "Name is required."
             }
         }
-    }
+    },
+    isPrivate: Sequelize.BOOLEAN
 }, {
     paranoid: true,
     underscored: true,
     freezeTableName: true
 });
 
-Team.belongsTo(User, { foreignKey: "createdBy" });
-User.hasMany(Team, { as: "createdTeams", foreignKey: "createdBy" });
+Workspace.belongsTo(User, { foreignKey: "createdBy" });
+Workspace.belongsTo(Organisation);
+Workspace.belongsTo(Team);
 
-Team.belongsTo(Organisation);
-Organisation.hasMany(Team);
-
-global.Team = Team;
+global.Workspace = Workspace;
