@@ -16,6 +16,9 @@ class CrudController {
 
     create = async (req, res, next) => {
         try {
+            if (req.user) {
+                req.body.createdBy = req.user.id
+            }
             const data = await this.service.create(req.body);
             Response.success(res, data, 201);
         } catch (error) {
