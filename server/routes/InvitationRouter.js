@@ -8,6 +8,17 @@ invitationRouter.mergeRoutes({
             bearerAuth,
             InvitationController.invite
         ]
+    },
+    "/details": {
+        get: [
+            InvitationController.details
+        ]
+    },
+    "/resolve": {
+        post: [
+            bearerAuth,
+            InvitationController.resolve
+        ]
     }
 });
 

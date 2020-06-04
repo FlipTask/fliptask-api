@@ -44,7 +44,10 @@ class CrudService {
         };
     }
 
+    beforeCreate = async (data) => { }
+
     create = async (data) => {
+        await this.beforeCreate(data);
         const createResponse = await this.model.create(data);
         return await this.afterCreate({ data, createResponse });
     }

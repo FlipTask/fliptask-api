@@ -2,7 +2,10 @@ const Sequelize = require("sequelize");
 const sequelize = require("../database");
 
 const UserOrganisationMap = sequelize.define("user_organisation_map", {
-    isAdmin: Sequelize.BOOLEAN
+    isAdmin: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false
+    }
 }, {
     paranoid: true,
     underscored: true,

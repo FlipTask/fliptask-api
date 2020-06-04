@@ -20,7 +20,7 @@ const Team = sequelize.define("team", {
 Team.belongsTo(User, { foreignKey: "createdBy" });
 User.hasMany(Team, { as: "createdTeams", foreignKey: "createdBy" });
 
-Team.belongsTo(Organisation);
+Team.belongsTo(Organisation, { require: true });
 Organisation.hasMany(Team);
 
 global.Team = Team;
