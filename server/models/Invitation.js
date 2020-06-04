@@ -21,7 +21,7 @@ const Invitation = sequelize.define("invitation", {
     freezeTableName: true
 });
 
-Invitation.belongsTo(User);
+Invitation.belongsTo(User, { foreignKey: "createdBy" });
 Invitation.belongsTo(Organisation);
 
 global.Invitation = Invitation;

@@ -1,3 +1,13 @@
 const CrudService = require("./base/CrudService");
 
-global.OrganisationService = new CrudService(Organisation);
+class OrganisationService extends CrudService {
+    afterCreate = async ({ data, createResponse }) => {
+        await createResponse.addMember(
+            data.createdBy,
+            { through: { isAdmin: true } }
+        );
+        return createResponse;
+    }
+}
+
+global.OrganisationService = new OrganisationService(Organisation);
