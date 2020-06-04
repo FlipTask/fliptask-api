@@ -5,3 +5,4 @@ require("./WorkspaceController");
 require("./TaskListController");
 require("./TaskController");
 require("./TaskCommentController");
+require("./InvitationController");

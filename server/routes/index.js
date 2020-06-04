@@ -5,3 +5,4 @@ require("./WorkspaceRouter");
 require("./TaskListRouter");
 require("./TaskRouter");
 require("./TaskCommentRouter");
+require("./InvitationRouter");
