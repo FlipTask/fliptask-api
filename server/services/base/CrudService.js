@@ -54,7 +54,7 @@ class CrudService {
     }
 
     update = async (id, data) => {
-        return await this.model.update(data, {
+        return await this.model.updateOne(data, {
             where: {
                 id
             }
