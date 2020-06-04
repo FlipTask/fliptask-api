@@ -48,6 +48,88 @@ class InvitationService extends CrudService {
 
         return response;
     }
+
+    details = async (link) => {
+        const invitation = await Invitation.findOne({
+            where: {
+                link
+            },
+            include: [
+                Organisation,
+                User
+            ]
+        });
+
+        if (!invitation) {
+            throw "Invalid invitation."
+        }
+
+        if (invitation.status != 'invited') {
+            return invitation
+        }
+
+        const invitedUser = await User.findOne({
+            where: {
+                email: invitation.email
+            }
+        });
+
+        if (invitedUser) {
+            return {
+                ...invitation.get(),
+                invitedUser
+            }
+        }
+    }
+
+    _saveInvitation = async ({ invitation, status }) => {
+        invitation.status = status;
+        invitation.resolvedAt = Date.now();
+        await invitation.save();
+        return {
+            message: `Invitation ${status}.`
+        }
+    }
+
+    _resolveValidInvitation = async ({ user, invitation, accept }) => {
+        const organisation = await invitation.getOrganisation();
+        if (organisation.hasMember(user)) {
+            await this._saveInvitation({ invitation, status: "duplicate" });
+            return {
+                message: `You're already a member of ${organisation.name}.`
+            }
+        }
+
+        const accepted = accept == "true";
+
+        if (accepted) {
+            await organisation.addMember(user);
+        }
+
+        const status = accepted ? "accepted" : "rejected";
+        return await this._saveInvitation({ invitation, status });
+    }
+
+    resolve = async ({ user, link, accept }) => {
+        const invitation = await Invitation.findOne({
+            where: {
+                link,
+                email: user.email
+            }
+        });
+
+        if (!invitation) {
+            throw "Invalid link";
+        }
+
+        if (invitation.resolvedAt) {
+            return {
+                message: `Invitation has been already ${invitation.status}.`
+            }
+        }
+
+        return await this._resolveValidInvitation({ user, invitation, accept });
+    }
 }
 
 global.InvitationService = new InvitationService(Invitation);
