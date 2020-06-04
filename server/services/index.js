@@ -5,3 +5,4 @@ require("./WorkspaceService");
 require("./TaskListService");
 require("./TaskService");
 require("./TaskCommentService");
+require("./InvitationService");

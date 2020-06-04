@@ -6,6 +6,7 @@ require("./TaskList");
 require("./Task");
 require("./TaskComment");
 require("./AuthToken");
+require("./Invitation");
 
 require("./UserOrganisationMap");
 require("./UserTeamMap");
