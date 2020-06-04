@@ -97,6 +97,7 @@ class UserService extends CrudService {
                 message: "Logged out!"
             }
         } catch (error) {
+            console.log("Logout error", authHeader, error)
             throw "Failed to logout!"
         }
     }
