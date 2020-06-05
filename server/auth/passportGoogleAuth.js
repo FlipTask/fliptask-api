@@ -24,6 +24,6 @@ passport.use(new GoogleStrategy(
             }
         });
 
-        done(null, user);
+        return done(null, user);
     }
 ));
