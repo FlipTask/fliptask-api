@@ -11,6 +11,15 @@ class UserController extends CrudController {
         }
     }
 
+    token = async (req, res, next) => {
+        try {
+            const data = await this.service.token(req.user);
+            Response.success(res, data);
+        } catch (error) {
+            Response.error(res, error, 403);
+        }
+    }
+
     login = async (req, res, next) => {
         try {
             const data = await this.service.login(req.body);

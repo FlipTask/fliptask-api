@@ -32,7 +32,7 @@ userRouter.mergeRoutes({
     "/auth/google/callback": {
         get: [
             googleAuth,
-            UserController.me
+            UserController.token
         ]
     }
 });

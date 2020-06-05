@@ -75,6 +75,10 @@ class UserService extends CrudService {
             throw "Invalid credentials!"
         }
 
+        return await this.token(user);
+    }
+
+    token = async (user) => {
         const token = await this._createAuthToken(user);
         return {
             token
