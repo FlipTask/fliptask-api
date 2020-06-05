@@ -31,7 +31,8 @@ userRouter.mergeRoutes({
     },
     "/auth/google/callback": {
         get: [
-            googleAuth
+            googleAuth,
+            UserController.me
         ]
     }
 });
