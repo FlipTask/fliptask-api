@@ -17,10 +17,10 @@ const Team = sequelize.define("team", {
     freezeTableName: true
 });
 
-Team.belongsTo(User, { foreignKey: "createdBy" });
+Team.belongsTo(User, { foreignKey: "createdBy", allowNull: false });
 User.hasMany(Team, { as: "createdTeams", foreignKey: "createdBy" });
 
-Team.belongsTo(Organisation, { require: true });
+Team.belongsTo(Organisation, { foreignKey: { allowNull: false } });
 Organisation.hasMany(Team);
 
 global.Team = Team;

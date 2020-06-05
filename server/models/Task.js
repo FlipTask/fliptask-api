@@ -16,7 +16,7 @@ const Task = sequelize.define("task", {
         allowNull: false
     },
     priority: Sequelize.INTEGER,
-    due_date: Sequelize.DATE,
+    dueDate: Sequelize.DATE,
     sequence: Sequelize.INTEGER,
     weight: Sequelize.INTEGER
 }, {
@@ -25,10 +25,10 @@ const Task = sequelize.define("task", {
     freezeTableName: true
 });
 
-Task.belongsTo(User, { foreignKey: "createdBy" });
+Task.belongsTo(User, { foreignKey: "createdBy", allowNull: false });
 User.hasMany(Task, { as: "createdTasks", foreignKey: "createdBy" });
 
-Task.belongsTo(TaskList);
+Task.belongsTo(TaskList, { foreignKey: { allowNull: false } });
 TaskList.hasMany(Task);
 
 Task.belongsTo(User, { foreignKey: "assignee" });

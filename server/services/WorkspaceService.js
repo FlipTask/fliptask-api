@@ -1,3 +1,9 @@
 const CrudService = require("./base/CrudService");
 
-global.WorkspaceService = new CrudService(Workspace);
+class WorkspaceService extends CrudService {
+    beforeCreate = async (data) => {
+        await this._userIsOrgMember(data);
+    }
+}
+
+global.WorkspaceService = new WorkspaceService(Workspace);

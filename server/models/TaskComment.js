@@ -17,10 +17,10 @@ const TaskComment = sequelize.define("task_comment", {
     freezeTableName: true
 });
 
-TaskComment.belongsTo(User, { foreignKey: "createdBy" });
+TaskComment.belongsTo(User, { foreignKey: "createdBy", allowNull: false });
 User.hasMany(TaskComment, { as: "createdComments", foreignKey: "createdBy" });
 
-TaskComment.belongsTo(Task);
+TaskComment.belongsTo(Task, { foreignKey: { allowNull: false } });
 Task.hasMany(TaskComment);
 
 global.TaskComment = TaskComment;
