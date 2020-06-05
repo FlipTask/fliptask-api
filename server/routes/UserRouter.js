@@ -23,6 +23,16 @@ userRouter.mergeRoutes({
         get: [
             UserController.logout
         ]
+    },
+    "/auth/google": {
+        get: [
+            googleAuth
+        ]
+    },
+    "/auth/google/callback": {
+        get: [
+            googleAuth
+        ]
     }
 });
 
