@@ -24,7 +24,7 @@ class UserService extends CrudService {
         const authToken = await AuthToken.create({
             token,
             expiresAt,
-            user
+            userId: user.id
         });
 
         await authToken.setUser(user);
