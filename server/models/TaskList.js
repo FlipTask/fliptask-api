@@ -17,10 +17,10 @@ const TaskList = sequelize.define("task_list", {
     freezeTableName: true
 });
 
-TaskList.belongsTo(User, { foreignKey: "createdBy" });
+TaskList.belongsTo(User, { foreignKey: "createdBy", allowNull: false });
 User.hasMany(TaskList, { as: "createdTaskLists", foreignKey: "createdBy" });
 
-TaskList.belongsTo(Workspace);
+TaskList.belongsTo(Workspace, { foreignKey: { allowNull: false } });
 Workspace.hasMany(TaskList);
 
 global.TaskList = TaskList;

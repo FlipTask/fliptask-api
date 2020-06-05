@@ -14,6 +14,6 @@ const AuthToken = sequelize.define("auth_token", {
     freezeTableName: true
 });
 
-AuthToken.belongsTo(User);
+AuthToken.belongsTo(User, { foreignKey: { allowNull: false } });
 
 global.AuthToken = AuthToken;

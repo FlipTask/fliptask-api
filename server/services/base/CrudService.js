@@ -1,5 +1,8 @@
-class CrudService {
+const Permissions = require("./Permissions");
+
+class CrudService extends Permissions {
     constructor(model) {
+        super(model);
         this.model = model;
         this.pageSize = 2;
     }

@@ -17,7 +17,7 @@ const Organisation = sequelize.define("organisation", {
     freezeTableName: true
 });
 
-Organisation.belongsTo(User, { foreignKey: "createdBy" });
+Organisation.belongsTo(User, { foreignKey: "createdBy", allowNull: false });
 User.hasMany(Organisation, { as: "createdOrganisations", foreignKey: "createdBy" });
 
 global.Organisation = Organisation;
