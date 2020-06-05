@@ -8,8 +8,6 @@ passport.use(new GoogleStrategy(
         callbackURL: config.googleAuth.callbackUrl
     },
     async (accessToken, refreshToken, profile, done) => {
-        console.log("test", profile);
-
         const { emails, name } = profile;
         const { givenName, familyName } = name;
         const email = emails[0].value;
