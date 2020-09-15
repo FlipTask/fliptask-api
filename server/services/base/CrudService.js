@@ -65,11 +65,16 @@ class CrudService extends Permissions {
     }
 
     update = async (id, data) => {
-        return await this.model.updateOne(data, {
-            where: {
-                id
-            }
-        });
+        try{
+            await this.model.update(data, {
+                where: {
+                    id
+                }
+            });
+            return await this.model.findByPk(id);
+        }catch(e){
+            return Response.error(500);
+        }
     }
 
     delete = async (id) => {
