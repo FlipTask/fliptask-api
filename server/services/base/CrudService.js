@@ -4,7 +4,7 @@ class CrudService extends Permissions {
     constructor(model) {
         super(model);
         this.model = model;
-        this.pageSize = 2;
+        this.pageSize = 10;
     }
 
     list = async (query) => {
@@ -61,6 +61,7 @@ class CrudService extends Permissions {
 
     get = async (id, query) => {
         let { include } = query;
+        console.log("get ", id, include);
         return await this.model.findByPk(id, { include });
     }
 

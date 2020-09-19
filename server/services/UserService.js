@@ -67,12 +67,12 @@ class UserService extends CrudService {
         });
 
         if (!user) {
-            throw "No user exists with this email!"
+            throw new FliptaskError("No user exists with this email!")
         }
 
         const passwordMatch = await this._checkPassword(password, user.password);
         if (!passwordMatch) {
-            throw "Invalid credentials!"
+            throw new FliptaskError("Invalid credentials!")
         }
 
         return await this.token(user);
@@ -91,7 +91,7 @@ class UserService extends CrudService {
         const splitHeader = authHeader.split(" ")
 
         if (splitHeader.length != 2) {
-            throw "Failed to logout!";
+            throw new FliptaskError("Failed to logout!");
         }
 
         const token = splitHeader[1];
@@ -102,7 +102,7 @@ class UserService extends CrudService {
             }
         } catch (error) {
             console.log("Logout error", authHeader, error)
-            throw "Failed to logout!"
+            throw new FliptaskError("Failed to logout!")
         }
     }
 }

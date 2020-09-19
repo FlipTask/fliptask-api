@@ -33,14 +33,15 @@ class CrudRouter {
 
     mergeRoutes = async (routes) => {
         this.routes = {
-            ...routes,
-            ...this.routes
+            ...this.routes,
+            ...routes
         }
     }
 
     register = async () => {
         for (const endpoint in this.routes) {
             for (const method in this.routes[endpoint]) {
+                // console.log(method, this.basePath + endpoint, this.routes[endpoint][method]);
                 expressApp[method](this.basePath+endpoint, this.routes[endpoint][method]);
             }
         }

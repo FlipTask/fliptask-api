@@ -2,7 +2,7 @@ class Permissions {
     _userIsOrgMember = async ({ createdBy, organisationId }) => {
         const organisation = await Organisation.findByPk(organisationId);
         if (!organisation) {
-            throw "Missing or incorrect params";
+            throw FliptaskError.missingParams("Missing or incorrect params");
         } else {
             const userOrganisationMap = await UserOrganisationMap.findOne({
                 where: {
@@ -12,7 +12,7 @@ class Permissions {
             });
 
             if (!userOrganisationMap) {
-                throw "Not authorised."
+                throw FliptaskError.permissionDenied();
             }
         }
     }

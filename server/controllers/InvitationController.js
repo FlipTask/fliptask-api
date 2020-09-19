@@ -5,7 +5,7 @@ class InvitationController extends CrudController {
     invite = async (req, res, next) => {
         try {
             if (!("organisationId" in req.body && "emailList" in req.body)) {
-                throw "Missing parameters";
+                throw FliptaskError.missingParams();
             }
             req.body.createdBy = req.user.id;
             const data = await this.service.inviteMany(req.body);
@@ -18,7 +18,7 @@ class InvitationController extends CrudController {
     details = async (req, res, next) => {
         try {
             if (!("link" in req.query)) {
-                throw "Missing parameters";
+                throw FliptaskError.missingParams();
             }
             const data = await this.service.details(req.query.link);
             Response.success(res, data);
@@ -32,7 +32,7 @@ class InvitationController extends CrudController {
             const { user, body } = req;
             const { link, accept } = body;
             if (!(link && accept)) {
-                throw "Missing parameters";
+                throw FliptaskError.missingParams();
             }
             const data = await this.service.resolve({ user, link, accept });
             Response.success(res, data);

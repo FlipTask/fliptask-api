@@ -19,10 +19,10 @@ const configuration = {
     bootstrap: [
         "Multer",
         "Mailer",
-        "Logger",
+        // "Logger",
         // "DB",
         // "Model",
-        "Middleware",
+        // "Middleware",
         // "Controller",
         // "Route",
         "Express"
@@ -65,10 +65,12 @@ const loadApp = async () => {
 
 
     require("./database");
+    require("./errors");
     require("./models");
     require("./services");
     require("./controllers");
     require("./auth");
+    require("./middlewares");
     require("./routes");
 
     const { PORT } = process.env;

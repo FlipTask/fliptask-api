@@ -6,4 +6,4 @@ class WorkspaceService extends CrudService {
     }
 }
 
-global.WorkspaceService = new WorkspaceService(Workspace);
+global.workspaceService = new WorkspaceService(Workspace);

@@ -61,7 +61,7 @@ class InvitationService extends CrudService {
         });
 
         if (!invitation) {
-            throw "Invalid invitation."
+            throw new FliptaskError("Invalid invitation.")
         }
 
         if (invitation.status != 'invited') {
@@ -119,7 +119,7 @@ class InvitationService extends CrudService {
         });
 
         if (!invitation) {
-            throw "Invalid link";
+            throw new FliptaskError("Invalid link");
         }
 
         if (invitation.resolvedAt) {

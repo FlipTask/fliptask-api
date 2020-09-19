@@ -8,8 +8,8 @@ class Response {
 
         let messages = {};
         
-        if (typeof error === "string") {
-            messages["error"] = error;
+        if (error instanceof Error) {
+            messages["error"] = error.message;
         } else if ("errors" in error && error["errors"].length) {
             messages = error["errors"].reduce((acc, item) => {
                 if (item.path && item.message) {
