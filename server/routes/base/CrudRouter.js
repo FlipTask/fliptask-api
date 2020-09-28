@@ -14,7 +14,7 @@ class CrudRouter {
                     this.controller.create
                 ]
             },
-            "/:id": {
+            "/:id(^[-+]?\d+$)": {
                 get: [
                     bearerAuth,
                     this.controller.get

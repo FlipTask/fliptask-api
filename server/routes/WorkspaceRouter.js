@@ -3,16 +3,19 @@ const CrudRouter = require("./base/CrudRouter");
 
 const workspaceRouter = new CrudRouter("/workspace", workspaceController);
 
+const workspacePermission = new Permissions();
 workspaceRouter.mergeRoutes({
     "/": {
         get: [
             bearerAuth,
-            Permission.userIsOrgMember,
+            Modifier.paramIdIsOrgId,
+            Modifier.createdByUser,
+            workspacePermission._userIsOrgMember,
             workspaceController.list
         ],
         post: [
             bearerAuth,
-            Permission.userIsOrgMember,
+            workspacePermission._userIsOrgMember,
             workspaceController.create
         ]
     }

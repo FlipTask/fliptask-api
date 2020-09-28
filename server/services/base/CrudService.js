@@ -61,7 +61,6 @@ class CrudService extends Permissions {
 
     get = async (id, query) => {
         let { include } = query;
-        console.log("get ", id, include);
         return await this.model.findByPk(id, { include });
     }
 
