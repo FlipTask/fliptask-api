@@ -10,5 +10,6 @@ require("./Invitation");
 
 require("./UserOrganisationMap");
 require("./UserTeamMap");
+require("./Verification");
 
 require("../database/migrate");

@@ -22,6 +22,18 @@ class Permission {
             Response.error(res, error);
         }
     }
+
+    static async isEmailVerified(req, res, next) {
+        try {
+            if(!req.user.isEmailVerified) {
+                throw FliptaskError.permissionDenied("Email verification is required !");
+            }
+            next();
+        } catch (error) {
+            console.log(error);
+            Response.error(res, error);
+        }
+    }
 }
 
 global.Permission = Permission;

@@ -1,8 +1,9 @@
+const Response = require("./../../controllers/base/Response");
 class Permissions {
     _userIsOrgMember = async (req, res, next) => {
         try {
             const { organisationId } = req;
-            const {createdBy} = req.query;
+            const { createdBy } = req.query;
             const organisation = await Organisation.findByPk(organisationId);
             if (!organisation) {
                 throw FliptaskError.missingParams("Missing or incorrect params");
@@ -18,7 +19,8 @@ class Permissions {
                 }
             }
         } catch (err) {
-            throw FliptaskError.serverError();
+            // throw FliptaskError.serverError();
+            return Response.error(res, err);
         }
         next();
     }

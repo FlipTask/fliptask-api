@@ -63,7 +63,7 @@ const loadApp = async () => {
         return [...properties.keys()].filter(item => typeof obj[item] === 'object')
     };
 
-
+    require("./utils");
     require("./database");
     require("./errors");
     require("./models");

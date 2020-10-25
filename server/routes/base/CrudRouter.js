@@ -1,3 +1,5 @@
+const Permissions = require("../../services/base/Permissions");
+const permission = new Permissions();
 class CrudRouter {
     constructor(basePath, controller) {
         this.basePath = basePath;
@@ -7,24 +9,40 @@ class CrudRouter {
             "/": {
                 get: [
                     bearerAuth,
+                    Permission.isEmailVerified,
+                    Modifier.paramIdIsOrgId,
+                    Modifier.createdByUser,
                     this.controller.list
                 ],
                 post: [
                     bearerAuth,
+                    Permission.isEmailVerified,
+                    Modifier.paramIdIsOrgId,
+                    Modifier.createdByUser,
                     this.controller.create
                 ]
             },
-            "/:id(^[-+]?\d+$)": {
+            "/:id": {
                 get: [
                     bearerAuth,
+                    Permission.isEmailVerified,
+                    Modifier.paramIdIsOrgId,
+                    Modifier.createdByUser,
+                    permission._userIsOrgMember,
                     this.controller.get
                 ],
                 patch: [
                     bearerAuth,
+                    Permission.isEmailVerified,
+                    Modifier.paramIdIsOrgId,
+                    Modifier.createdByUser,
                     this.controller.update
                 ],
                 delete: [
                     bearerAuth,
+                    Permission.isEmailVerified,
+                    Modifier.paramIdIsOrgId,
+                    Modifier.createdByUser,
                     this.controller.delete
                 ]
             }

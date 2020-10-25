@@ -8,6 +8,7 @@ workspaceRouter.mergeRoutes({
     "/": {
         get: [
             bearerAuth,
+            Permission.isEmailVerified,
             Modifier.paramIdIsOrgId,
             Modifier.createdByUser,
             workspacePermission._userIsOrgMember,
@@ -15,6 +16,9 @@ workspaceRouter.mergeRoutes({
         ],
         post: [
             bearerAuth,
+            Permission.isEmailVerified,
+            Modifier.paramIdIsOrgId,
+            Modifier.createdByUser,
             workspacePermission._userIsOrgMember,
             workspaceController.create
         ]
