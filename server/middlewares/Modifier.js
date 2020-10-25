@@ -1,6 +1,6 @@
 class Modifier {
     static paramIdIsOrgId(req, res, next) {
-        res.locals.orgId = req.params.id;
+        req.organisationId = req.headers.organisationid;
         next();
     }
 

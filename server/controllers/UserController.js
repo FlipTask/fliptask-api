@@ -11,6 +11,24 @@ class UserController extends CrudController {
         }
     }
 
+    verifyEmail = async (req, res, next) => {
+        try {
+            const data = await this.service.verifyEmail(req.params.token);
+            Response.success(res, data);
+        } catch (error) {
+            Response.error(res, error);
+        }
+    }
+
+    resendEmailVerificationLink = async (req, res, next) => {
+        try {
+            const data = await this.service.resendEmailVerificationLink(req.body.email);
+            Response.success(res, data);
+        } catch (error) {
+            Response.error(res, error);
+        }
+    }
+    
     token = async (req, res, next) => {
         try {
             const data = await this.service.token(req.user);

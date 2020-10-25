@@ -49,10 +49,14 @@ class CrudService extends Permissions {
 
     beforeCreate = async (data) => { }
 
-    create = async (data) => {
-        await this.beforeCreate(data);
-        const createResponse = await this.model.create(data);
-        return await this.afterCreate({ data, createResponse });
+    create = async (data, req) => {
+        try {
+            await this.beforeCreate(data, req);
+            const createResponse = await this.model.create(data);
+            return await this.afterCreate({ data, createResponse });
+        } catch (err) {
+            console.log(err);
+        }
     }
 
     afterCreate = async ({ data, createResponse }) => {
@@ -61,7 +65,6 @@ class CrudService extends Permissions {
 
     get = async (id, query) => {
         let { include } = query;
-        console.log("get ", id, include);
         return await this.model.findByPk(id, { include });
     }
 

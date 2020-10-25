@@ -4,13 +4,15 @@ class Response {
     }
 
     static error = (res, error = null, statusCode = 500) => {
-        console.log(error)
-
+        console.log("{ERROR}", error);
         let messages = {};
-        
+        const response = {
+            error: true,
+            data: null
+        };
         if (error instanceof Error) {
             messages["error"] = error.message;
-        } else if ("errors" in error && error["errors"].length) {
+        } else if (error && "errors" in error && error["errors"].length) {
             messages = error["errors"].reduce((acc, item) => {
                 if (item.path && item.message) {
                     acc[item.path] = item.message;
@@ -18,7 +20,11 @@ class Response {
                 return acc;
             }, {})
         }
-        res.status(statusCode).json({ error: true, data: null, messages });
+        response.messages = messages;
+        if(error && error.next) {
+            response.next = error.next;
+        }
+        res.status(statusCode).json(response);
     }
 }
 
